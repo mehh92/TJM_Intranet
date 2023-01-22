@@ -1,0 +1,9 @@
+C:\Users\Mehdi\source\repos\Depannage\bin\Depannage.dll.config
+C:\Users\Mehdi\source\repos\Depannage\bin\Depannage.dll
+C:\Users\Mehdi\source\repos\Depannage\bin\Depannage.pdb
+C:\Users\Mehdi\source\repos\Depannage\bin\MySql.Data.dll
+C:\Users\Mehdi\source\repos\Depannage\obj\Debug\Depannage.csproj.AssemblyReference.cache
+C:\Users\Mehdi\source\repos\Depannage\obj\Debug\Depannage.csproj.CoreCompileInputs.cache
+C:\Users\Mehdi\source\repos\Depannage\obj\Debug\Depannage.csproj.CopyComplete
+C:\Users\Mehdi\source\repos\Depannage\obj\Debug\Depannage.dll
+C:\Users\Mehdi\source\repos\Depannage\obj\Debug\Depannage.pdb
