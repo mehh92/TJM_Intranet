@@ -7,3 +7,12 @@ C:\Users\Mehdi\source\repos\Depannage\obj\Debug\Depannage.csproj.CoreCompileInpu
 C:\Users\Mehdi\source\repos\Depannage\obj\Debug\Depannage.csproj.CopyComplete
 C:\Users\Mehdi\source\repos\Depannage\obj\Debug\Depannage.dll
 C:\Users\Mehdi\source\repos\Depannage\obj\Debug\Depannage.pdb
+C:\Users\Mehdi\source\repos\Intranet\bin\Depannage.dll.config
+C:\Users\Mehdi\source\repos\Intranet\bin\Depannage.dll
+C:\Users\Mehdi\source\repos\Intranet\bin\Depannage.pdb
+C:\Users\Mehdi\source\repos\Intranet\bin\MySql.Data.dll
+C:\Users\Mehdi\source\repos\Intranet\obj\Debug\Depannage.csproj.AssemblyReference.cache
+C:\Users\Mehdi\source\repos\Intranet\obj\Debug\Depannage.csproj.CoreCompileInputs.cache
+C:\Users\Mehdi\source\repos\Intranet\obj\Debug\Depannage.csproj.CopyComplete
+C:\Users\Mehdi\source\repos\Intranet\obj\Debug\Depannage.dll
+C:\Users\Mehdi\source\repos\Intranet\obj\Debug\Depannage.pdb
