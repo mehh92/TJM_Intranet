@@ -4,7 +4,7 @@
 
 <h4>Insertion d'un client</h4>
 
-<!-- #include file="vue/vue_insert_client.html"-->
+<!-- #include file="vue/vue_insert_client.aspx"-->
 
 <%
     string message = "";
