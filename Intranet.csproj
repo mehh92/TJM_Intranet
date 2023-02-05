@@ -61,7 +61,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="clients.aspx" />
+    <Content Include="clients.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="interventions.aspx" />
     <Content Include="sql\depannage.sql" />
@@ -84,7 +87,6 @@
     <Compile Include="modele\Modele.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="css\" />
     <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
