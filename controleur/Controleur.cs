@@ -1,18 +1,49 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient.Memcached;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Depannage
+namespace Intranet
 {
     public class Controleur
     {
-        private static Modele unModele = new Modele("localhost", "depannage_sd_23", "root", "");
+        private static Modele unModele = new Modele("localhost", "tjm", "root", "");
 
-        public static void InsertClient(Client unClient)
+        public static void InsertMecanicien(Mecanicien unMecanicien)
         {
-            unModele.InsertClient(unClient);
+            unModele.InsertMecanicien(unMecanicien);
+        }
+
+        public static void DeleteMecanicien(int idMecanicien)
+        {
+            unModele.DeleteMecanicien(idMecanicien);
+        }
+
+        public static void UpdateMecanicien(Mecanicien unMecanicien)
+        {
+            unModele.UpdateMecanicien(unMecanicien);
+        }
+
+        public static Mecanicien SelectWhereMecanicien(int idMecanicien)
+        {
+             return unModele.SelectWhereMecanicien(idMecanicien);
+        }
+
+        public static List<Mecanicien> SelectAllMecaniciens()
+        {
+            return unModele.SelectAllMecaniciens();
+        }
+
+        public static Manager SelectWhereManager(string email, string mdp)
+        {
+            return unModele.SelectWhereManager(email, mdp);
+        }
+
+        public static void InsertManager(Manager unManager)
+        {
+            unModele.InsertManager(unManager);
         }
     }
 }

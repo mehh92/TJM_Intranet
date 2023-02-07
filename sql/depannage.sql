@@ -5,19 +5,19 @@ create database tjm;
 use tjm;
 
 create table utilisateur (
-	id_user int(5) auto_increment,
+	iduser int(5) auto_increment,
 	nom varchar(10),
 	prenom varchar(10),
 	email varchar(30),
 	tel varchar(30),
 	mdp varchar(30),
-	role enum ('candidat', 'client', 'employe', 'vendeur', 'recruteur', 'mecanicien'),
-	PRIMARY KEY (id_user)
+	role enum ('candidat', 'client', 'employe', 'vendeur', 'recruteur', 'mecanicien', 'manager'),
+	PRIMARY KEY (iduser)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
 create table employe (
-	id_user int(5),
+	iduser int(5),
 	nom varchar(10),
 	prenom varchar(10),
 	adresse varchar(50),
@@ -25,49 +25,62 @@ create table employe (
 	tel varchar(30),
 	mdp varchar(30),
 	role varchar(30) default 'employe',
-	PRIMARY KEY (id_user)
+	PRIMARY KEY (iduser)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
 create table client (
-	id_user int(5),
+	iduser int(5),
 	nom varchar(10),
 	prenom varchar(10),
 	email varchar(30),
 	tel varchar(30),
 	mdp varchar(30),
 	role varchar(30) default 'client',
-	PRIMARY KEY (id_user)
+	PRIMARY KEY (iduser)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
 create table candidat(
-	id_user int(5),
+	iduser int(5),
 	nom varchar(10),
 	prenom varchar(10),
 	email varchar(30),
 	tel varchar(30),
 	mdp varchar(30),
 	role varchar(30) default 'candidat',
-	PRIMARY KEY (id_user)
+	PRIMARY KEY (iduser)
+)
+ENGINE=innodb DEFAULT CHARSET=latin1;
+
+create table manager (
+	iduser int(5),
+	nom varchar(10),
+	prenom varchar(10),
+	email varchar(30),
+	tel varchar(30),
+	mdp varchar(30),
+	role varchar(30) default 'manager',
+	adresse varchar(50),
+	PRIMARY KEY (iduser)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
 create table mecanicien (
-	id_user int(5),
+	iduser int(5),
 	nom varchar(10),
 	prenom varchar(10),
-	adresse varchar(50),
 	email varchar(30),
 	tel varchar(30),
 	mdp varchar(30),
 	role varchar(30) default 'mecanicien',
-	PRIMARY KEY (id_user)
+	adresse varchar(50),
+	PRIMARY KEY (iduser)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
 create table vendeur (
-	id_user int(5),
+	iduser int(5),
 	nom varchar(10),
 	prenom varchar(10),
 	adresse varchar(50),
@@ -75,12 +88,12 @@ create table vendeur (
 	tel varchar(30),
 	mdp varchar(30),
 	role varchar(30) default 'vendeur',
-	PRIMARY KEY (id_user)
+	PRIMARY KEY (iduser)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
 create table recruteur (
-	id_user int(5),
+	iduser int(5),
 	nom varchar(10),
 	prenom varchar(10),
 	adresse varchar(50),
@@ -88,7 +101,7 @@ create table recruteur (
 	tel varchar(30),
 	mdp varchar(30),
 	role varchar(30) default 'recruteur',
-	PRIMARY KEY (id_user)
+	PRIMARY KEY (iduser)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
@@ -118,10 +131,10 @@ create table candidature (
 	diplome varchar(30),
 	message longtext,
 	statut varchar(30) default 'En cour de traitement',
-	id_user int(5),
+	iduser int(5),
 	id_offre int(5),
 	PRIMARY KEY (id_candidature),
-	FOREIGN KEY (id_user) references candidat (id_user),
+	FOREIGN KEY (iduser) references candidat (iduser),
 	FOREIGN KEY (id_offre) references offre (id_offre)
 	on update cascade
 	on delete cascade
@@ -240,7 +253,7 @@ ENGINE=innodb DEFAULT CHARSET=latin1;
 create or replace view VuelesCandidatures as (
 select c.id_candidature, o.id_offre, o.titre, o.lieux, o.contrat,
 c.nom, c.prenom, c.email, c.tel, c.date_candidature, c.experience,
-c.diplome, c.message, c.statut, c.id_user
+c.diplome, c.message, c.statut, c.iduser
 from offre o, candidature c
 where o.id_offre = c.id_offre
 );
@@ -255,7 +268,7 @@ CREATE TRIGGER InsertUtilisateurToCandidat
  begin
  if (new.role = 'candidat')
     then
-        insert into candidat (id_user, nom, prenom, email, tel, mdp, role) values (new.id_user, new.nom, new.prenom, new.email, new.tel, new.mdp, new.role);
+        insert into candidat (iduser, nom, prenom, email, tel, mdp, role) values (new.iduser, new.nom, new.prenom, new.email, new.tel, new.mdp, new.role);
     end if;
  END //
 Delimiter ;
@@ -263,3 +276,33 @@ Delimiter ;
 
 
 insert into utilisateur values (1,'Albert','Camus','albert.camus@gmail.com','0605531221','albert123','employe');
+
+
+
+create view vueMecaniciens as (
+	select u.*, e.adresse
+	from utilisateur u, employe e
+	where u.iduser = e.iduser
+);
+
+create view vueManagers as (
+	select u.*, e.adresse
+	from utilisateur u, employe e
+	where u.iduser = e.iduser
+);
+
+delimiter $
+create procedure updateMecanicien (IN e_iduser int, IN e_nom varchar(50), IN e_prenom varchar(50), IN e_email varchar(50), IN e_tel varchar(50), IN e_mdp varchar(50), IN e_adresse varchar(50))
+Begin
+	update employe set nom = e_nom, prenom = e_prenom, email = e_email, tel = e_tel, mdp= p_mdp, adresse = e_adresse
+	where iduser = e_iduser;
+End $
+delimiter ;
+
+delimiter $
+create procedure updateManager (IN e_iduser int, IN e_nom varchar(50), IN e_prenom varchar(50), IN e_email varchar(50), IN e_tel varchar(50), IN e_mdp varchar(50), IN e_adresse varchar(50))
+Begin
+	update employe set nom = e_nom, prenom = e_prenom, email = e_email, tel = e_tel, mdp= p_mdp, adresse = e_adresse
+	where iduser = e_iduser;
+End $
+delimiter ;
