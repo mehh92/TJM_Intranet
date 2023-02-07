@@ -61,26 +61,19 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="mecaniciens.aspx">
+    <Content Include="employe.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="images\logo.png" />
     <Content Include="sql\depannage.sql" />
-    <Content Include="vue\vue_insert_mecanicien.aspx" />
-    <Content Include="vue\vue_insert_intervention.aspx" />
-    <Content Include="vue\vue_insert_technicien.aspx" />
-    <Content Include="vue\vue_les_mecaniciens.aspx" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controleur\Mecanicien.cs" />
     <Compile Include="controleur\Controleur.cs" />
     <Compile Include="controleur\Employe.cs" />
-    <Compile Include="controleur\Utilisateur.cs" />
-    <Compile Include="controleur\Manager.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

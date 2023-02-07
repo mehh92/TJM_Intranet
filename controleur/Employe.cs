@@ -12,7 +12,7 @@ namespace Intranet
         private string nom, prenom, email, tel, adresse, mdp, role;
         public Employe()
         {
-            this.adresse = "";
+            this.id_user = 0;
         }
 
         public Employe(int idUser, string nom, string prenom, string email, string tel, string mdp, string role, string adresse) : base(idUser, nom, prenom, email, tel, mdp, role)
