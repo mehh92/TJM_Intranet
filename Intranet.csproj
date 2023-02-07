@@ -66,11 +66,7 @@
     </Content>
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
-<<<<<<< HEAD
     <Content Include="images\logo.png" />
-    <Content Include="interventions.aspx" />
-=======
->>>>>>> 632a669182aa11a544ba4b493a02d5bd913b4ce1
     <Content Include="sql\depannage.sql" />
     <Content Include="vue\vue_insert_mecanicien.aspx" />
     <Content Include="vue\vue_insert_intervention.aspx" />
@@ -90,14 +86,10 @@
     </Compile>
     <Compile Include="modele\Modele.cs" />
   </ItemGroup>
-<<<<<<< HEAD
-  <ItemGroup />
-=======
   <ItemGroup>
     <Folder Include="fonts\" />
-    <Folder Include="images\" />
   </ItemGroup>
->>>>>>> 632a669182aa11a544ba4b493a02d5bd913b4ce1
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="vue\vue_connexion.aspx" />

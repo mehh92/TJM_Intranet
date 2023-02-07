@@ -6,10 +6,11 @@ using System.Text;
 
 namespace Intranet
 {
-    public class Employe : Utilisateur
+    public class Employe
     {
-        private string adresse;
-        public Employe() : base()
+        private int id_user;
+        private string nom, prenom, email, tel, adresse, mdp, role;
+        public Employe()
         {
             this.adresse = "";
         }

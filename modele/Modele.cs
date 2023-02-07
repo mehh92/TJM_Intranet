@@ -19,15 +19,16 @@ namespace Intranet
             this.bdd = bdd;
             this.user = user;
             this.mdp = mdp;
-            string url = "SERVER="+this.serveur+"; Database="+this.bdd+"; User Id ="+this.user+"; Password="+this.mdp;
+            string url = "SslMode=None;  SERVER=" + this.serveur + "; Database=" + this.bdd + "; User ID=" + this.user + "; Password=" + this.mdp;
 
             try
             {
                 this.maConnexion = new MySqlConnection(url);
+                Console.WriteLine(url);
             }
-            catch (Exception exp) 
-            { 
-                Console.WriteLine("Erreur de connexion a : "+url);
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp.Message + " Erreur de connexion a : " + url);
             }
 
         }
