@@ -1,4 +1,4 @@
-﻿<h2> Ajout d'un Client </h2>
+﻿<h2> Ajout d'un mécanicien </h2>
 
 <form method="post">
 
@@ -10,6 +10,8 @@
     <input type="text" name="adresse" />
     <label>Email</label>
     <input type="text" name="email" />
+    <label>Tel</label>
+    <input type="tel" name="tel" />
     <label>Mdp</label>
     <input type="text" name="mdp" />
 

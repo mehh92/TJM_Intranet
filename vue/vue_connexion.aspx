@@ -1,4 +1,4 @@
-<h2>Connexion au site dépannage </h2>
+<h2>Connexion a l'intranet </h2>
 <form method="post">
     <table border ="0">
         <tr>
