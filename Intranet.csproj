@@ -66,6 +66,7 @@
     </Content>
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
+    <Content Include="images\logo.png" />
     <Content Include="interventions.aspx" />
     <Content Include="sql\depannage.sql" />
     <Content Include="techniciens.aspx" />
@@ -86,9 +87,7 @@
     </Compile>
     <Compile Include="modele\Modele.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="vue\vue_connexion.aspx" />
