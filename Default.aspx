@@ -27,7 +27,19 @@
             </div>
         </div>
     </header>
+
+        <div class="container-bandeau">
+            <div class="bandeau">
+                <a href="Default.aspx?page=0">Accueil</a>
+                <a href="Default.aspx?page=1">Mon profil</a>
+                <a href="Default.aspx?page=2">Mes congés et absences</a>
+                <a href="Default.aspx?page=3">Ma fiche de paie</a>
+                <a href="Default.aspx?page=4">Mon planning</a>
+            </div>
+        </div>
+
     <center>
+        <div>
         <h1>Intranet des employés</h1>
         <br>
 
@@ -58,12 +70,8 @@
             Response.Redirect("Default.aspx?page=1");
         }
     %>
+    </div>
 
-    <a href="Default.aspx?page=0">Accueil</a>
-    <a href="Default.aspx?page=1">Mon profil</a>
-    <a href="Default.aspx?page=2">Mes congés et absences</a>
-    <a href="Default.aspx?page=3">Ma fiche de paie</a>
-    <a href="Default.aspx?page=4">Mon planning</a>
 
 
 
