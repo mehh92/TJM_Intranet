@@ -259,6 +259,13 @@ from offre o, candidature c
 where o.id_offre = c.id_offre
 );
 
+
+create or replace view vueEmployes as (
+	select u.*, e.adresse
+	from utilisateur u, employe e
+	where u.id_user = e.id_user
+);
+
 /*TRIGGERS*/
 
 drop trigger if exists InsertUtilisateurToCandidatOrClient;

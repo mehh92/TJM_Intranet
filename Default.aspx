@@ -38,20 +38,19 @@
         {
             string email = Request.Form["email"];
             string mdp = Request.Form["mdp"];
-            Intranet.Manager unManager = Intranet.Controleur.SelectWhereManager(email, mdp);
+            Intranet.Employe unEmploye = Intranet.Controleur.SelectWhereEmploye(email, mdp);
 
             string chaineConnect = "";
-            if(unManager == null)
+            if(unEmploye == null)
             {
                 chaineConnect += "veuillez vérifier vos identifiants";
             }
             else
             {
-                Session["id"] = unManager.IdUser;
-                Session["nom"] = unManager.Nom;
-                Session["prenom"] = unManager.Prenom;
-                Session["email"] = unManager.Email;
-                Session["tel"] = unManager.Tel;
+                Session["id"] = unEmploye.IdUser;
+                Session["nom"] = unEmploye.Nom;
+                Session["prenom"] = unEmploye.Prenom;
+                Session["email"] = unEmploye.Email;
 
                 chaineConnect += "Bienvenu " + Session["Prenom"];
             }
@@ -61,13 +60,19 @@
     %>
 
     <a href="Default.aspx?page=0">Accueil</a>
+    <a href="Default.aspx?page=1">Mon profil</a>
+    <a href="Default.aspx?page=2">Mes congés et absences</a>
+    <a href="Default.aspx?page=3">Ma fiche de paie</a>
+    <a href="Default.aspx?page=4">Mon planning</a>
+
+
 
     <%
-    string chaineHeader =" <a href='Default.aspx?page=1'>Gestion des clients</a> <a href='Default.aspx?page=2'>Gestion des techniciens</a> <a href='Default.aspx?page=3'>Gestion des interventions</a><a href='Default.aspx?page=4'>Déconnexion</a> ";
-    if (Session["id"] != null)
-    {
-        Response.Write(chaineHeader);
-    }
+        /*string chaineHeader =" <a href='Default.aspx?page=1'>Gestion des clients</a> <a href='Default.aspx?page=2'>Gestion des techniciens</a> <a href='Default.aspx?page=3'>Gestion des interventions</a><a href='Default.aspx?page=4'>Déconnexion</a> ";*/
+        if (Session["id"] != null)
+        {
+            Response.Write(chaineHeader);
+        }
     %>
 
 

@@ -11,39 +11,29 @@ namespace Intranet
     {
         private static Modele unModele = new Modele("localhost", "tjm", "root", "");
 
-        public static void InsertMecanicien(Mecanicien unMecanicien)
+        public static void InsertEmploye(Employe unEmploye)
         {
-            unModele.InsertMecanicien(unMecanicien);
+            unModele.InsertEmploye(unEmploye);
         }
 
-        public static void DeleteMecanicien(int idMecanicien)
+        public static void DeleteEmploye(int idEmploye)
         {
-            unModele.DeleteMecanicien(idMecanicien);
+            unModele.DeleteEmploye(idEmploye);
         }
 
-        public static void UpdateMecanicien(Mecanicien unMecanicien)
+        public static void UpdateEmploye(Employe unEmploye)
         {
-            unModele.UpdateMecanicien(unMecanicien);
+            unModele.UpdateEmploye(unEmploye);
         }
 
-        public static Mecanicien SelectWhereMecanicien(int idMecanicien)
+        public static List<Employe> SelectAllEmployes()
         {
-             return unModele.SelectWhereMecanicien(idMecanicien);
+            return unModele.SelectAllEmployes();
         }
 
-        public static List<Mecanicien> SelectAllMecaniciens()
+        public static Employe SelectWhereEmploye(string email, string mdp)
         {
-            return unModele.SelectAllMecaniciens();
-        }
-
-        public static Manager SelectWhereManager(string email, string mdp)
-        {
-            return unModele.SelectWhereManager(email, mdp);
-        }
-
-        public static void InsertManager(Manager unManager)
-        {
-            unModele.InsertManager(unManager);
+            return unModele.SelectWhereEmploye(email, mdp);
         }
     }
 }
