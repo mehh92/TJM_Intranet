@@ -68,22 +68,18 @@ header {
     flex-wrap: wrap;
 }
 
-.text-nav > ul {
-margin-top: 1rem;
-}
 
 .text-nav > ul > li {
 list-style: none;
 margin: 5px;
-display: inline;
+display: block;
 font-size: 22px;
 }
 
 .text-nav > ul > li > a {
     text-decoration: none;
-    color: black;
+    color: white;
     display: inline-block;
-    color: #000;
 }
 
 .nav-img {
@@ -223,20 +219,16 @@ font-size: 22px;
 
 .bandeau {
     background: #385B64;
-    width: 200px;
+    width: 300px;
     text-align: left;
-    padding-left: 20px;
-    padding-top: 10px;
+    padding-left: 42px;
+    padding-top: 30px;
     position: absolute;
+    left: 0;
+    top: 0;
+    height: 1000px;
 }
 
 .container-bandeau {
     position: relative;
 }
-
-
-
-
-
-
-

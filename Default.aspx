@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <title>TJM Recrutement</title>
+    <title>TJM Intranet</title>
 </head>
 <body>
     <header>
@@ -22,21 +22,14 @@
             </div>
             <div class="text-nav">
                 <ul>
-                    <li><a href="index.jsp?page=0"><img class="nav-img" src="images/deconnexion.png" width="50px" height="50px"></a></li>
+                    <li><a href="Default.aspx?page=0"><img class="nav-img" src="images/deconnexion.png" width="50px" height="50px"></a></li>
                 </ul>
             </div>
         </div>
     </header>
 
-        <div class="container-bandeau">
-            <div class="bandeau">
-                <a href="Default.aspx?page=0">Accueil</a>
-                <a href="Default.aspx?page=1">Mon profil</a>
-                <a href="Default.aspx?page=2">Mes congés et absences</a>
-                <a href="Default.aspx?page=3">Ma fiche de paie</a>
-                <a href="Default.aspx?page=4">Mon planning</a>
-            </div>
-        </div>
+    
+
 
     <center>
         <div>
@@ -67,7 +60,7 @@
                 chaineConnect += "Bienvenu " + Session["Prenom"];
             }
             Response.Write(chaineConnect);
-            Response.Redirect("Default.aspx?page=1");
+            Response.Redirect("Default.aspx?page=0");
         }
     %>
     </div>
@@ -77,10 +70,19 @@
 
     <%
         /*string chaineHeader =" <a href='Default.aspx?page=1'>Gestion des clients</a> <a href='Default.aspx?page=2'>Gestion des techniciens</a> <a href='Default.aspx?page=3'>Gestion des interventions</a><a href='Default.aspx?page=4'>Déconnexion</a> ";*/
-       /* if (Session["id"] != null)
-        {
-            Response.Write(chaineHeader);
-        } */
+        if (Session["id"] != null)
+        { %>
+        <div class="container-bandeau text-nav">
+            <ul class="bandeau">
+                <li><a class="effect" href="Default.aspx?page=0">Accueil</a></li>
+                <li><a class="effect" href="Default.aspx?page=1">Mon profil</a></li>
+                <li><a class="effect" href="Default.aspx?page=2">Mon plannings</a></li>
+                <li><a class="effect" href="Default.aspx?page=3">Mes fiches de paie</a></li>
+            </ul>
+        </div>
+
+             <% /*Response.Write(chaineHeader);*/
+                 }
     %>
 
 
