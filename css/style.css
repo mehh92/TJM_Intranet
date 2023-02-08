@@ -212,6 +212,30 @@ font-size: 22px;
         width: 100%;
     }
 
+/* BANDEAU */
+
+.bandeau a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.bandeau {
+    background: #385B64;
+    width: 200px;
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 10px;
+    position: absolute;
+}
+
+.container-bandeau {
+    position: relative;
+}
+
+
+
 
 
 
