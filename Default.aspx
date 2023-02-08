@@ -20,24 +20,27 @@
             <div class="voiture-nav">
                 <img class="voiture" src="images/logo.png" alt="logo de TJM Automobile">
             </div>
-            <div class="text-nav">
-                <ul>
-                    <li><a href="Default.aspx?page=0"><img class="nav-img" src="images/deconnexion.png" width="50px" height="50px"></a></li>
-                </ul>
-            </div>
+            <%
+                if (Session["id"] != null)
+                {
+            %>
+                <div class="text-nav">
+                    <ul>
+                        <li><a href="Default.aspx?page=4"><img class="nav-img" src="images/deconnexion.png" width="50px" height="50px"></a></li>
+                    </ul>
+                </div>
+            <%  } %>
         </div>
     </header>
 
-    
-
-
-    <center>
-        <div>
-        <h1>Intranet des employés</h1>
-        <br>
-
+        
+        <%
+            if (Session["id"] == null)
+            { 
+        %>
         <!-- #include file="vue/vue_connexion.aspx" -->
-    
+        <% } %>
+        
     <%
         if (Request.Form["seConnecter"] != null)
         {
@@ -63,13 +66,13 @@
             Response.Redirect("Default.aspx?page=0");
         }
     %>
-    </div>
 
 
 
-
+    
     <%
         /*string chaineHeader =" <a href='Default.aspx?page=1'>Gestion des clients</a> <a href='Default.aspx?page=2'>Gestion des techniciens</a> <a href='Default.aspx?page=3'>Gestion des interventions</a><a href='Default.aspx?page=4'>Déconnexion</a> ";*/
+      
         if (Session["id"] != null)
         { %>
         <div class="container-bandeau text-nav">
@@ -97,18 +100,33 @@
         }
         switch(page)
         {
-            case 0:  break;
+            case 0:
 
-            
+                break;
+
+
             case 1:
+
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+               
+                break;
+
+            case 4:
                 Session.Remove("id");
                 Session.Abandon();
                 Response.Redirect("Default.aspx?page=0", false);
                 break;
-         }
+
+        }
 
         %>
 
-    </center>
+    
 </body>
 </html>

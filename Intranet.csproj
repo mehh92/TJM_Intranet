@@ -72,8 +72,11 @@
     <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controleur\Absence.cs" />
     <Compile Include="controleur\Controleur.cs" />
     <Compile Include="controleur\Employe.cs" />
+    <Compile Include="controleur\Paie.cs" />
+    <Compile Include="controleur\Vplanning.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

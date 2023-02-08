@@ -141,40 +141,40 @@ create table candidature (
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
-create table paye(
-	id_paye int(5) auto_increment,
+create table paie (
+	id_paie int(5) auto_increment,
 	montant float(7,2),
-	date_montant varchar(20),
+	date_versement varchar(20),
 	description varchar(30),
 	objet varchar(30),
-	PRIMARY KEY (id_paye)
+	PRIMARY KEY (id_paie)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
-create table absence(
+create table absence (
 	id_absence int(5) auto_increment,
+	id_planning int(5),
 	duree varchar(50),
-	motif varchar(50),
-	PRIMARY KEY (id_absence)
+	motif enum,
+	PRIMARY KEY (id_absence),
+	FOREIGN KEY (id_planning) references planning (id_planning)
+	on update cascade
+	on delete cascade
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
-create table conge(
-	id_conge int(5) auto_increment,
-	date_conge varchar(30),
-	duree varchar(50),
-	motif varchar(50),
-	PRIMARY KEY (id_conge)
-)
-ENGINE=innodb DEFAULT CHARSET=latin1;
 
-create table tache(
+create table tache (
 	id_tache int(5) auto_increment,
+	id_planning int(5),
 	lieu varchar(50),
 	heure varchar(20),
 	motif varchar(50),
 	duree varchar(20),
-	PRIMARY KEY (id_tache)
+	PRIMARY KEY (id_tache),
+	FOREIGN KEY (id_planning) references planning (id_planning)
+	on update cascade
+	on delete cascade
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
@@ -182,15 +182,7 @@ ENGINE=innodb DEFAULT CHARSET=latin1;
 create table planning(
 	id_planning int(5) auto_increment,
 	date_planning varchar(30),
-	id_conge int(5),
-	id_absence int(5),
-	id_tache int(5),
-	PRIMARY KEY (id_planning),
-	FOREIGN KEY (id_conge) references conge (id_conge),
-	FOREIGN KEY (id_absence) references absence (id_absence),
-	FOREIGN KEY (id_tache) references tache (id_tache)
-	on update cascade
-	on delete cascade
+	PRIMARY KEY (id_planning)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
