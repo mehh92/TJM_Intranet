@@ -33,9 +33,9 @@ namespace Intranet
 
         }
 
-        public void InsertMecanicien(Mecanicien unMecanicien)
+        public void InsertEmploye(Employe unEmploye)
         {
-            string requete = "call InsertMecanicien(@nom, @prenom, @email, @tel, @mdp, @role, @adresse);";
+            string requete = "call insertEmploye(@nom, @prenom, @email, @tel, @adresse, @mdp, @role);";
             try
             {
                 this.maConnexion.Open();
@@ -43,13 +43,13 @@ namespace Intranet
                 MySqlCommand uneCmde = this.maConnexion.CreateCommand();
                 uneCmde.CommandText = requete;
                 //les correspondances entre variables MYSQL ET C#
-                uneCmde.Parameters.AddWithValue("@nom", unMecanicien.Nom);
-                uneCmde.Parameters.AddWithValue("@prenom", unMecanicien.Prenom);
-                uneCmde.Parameters.AddWithValue("@email", unMecanicien.Email);
-                uneCmde.Parameters.AddWithValue("@email", unMecanicien.Tel);
-                uneCmde.Parameters.AddWithValue("@mdp", unMecanicien.Mdp);
-                uneCmde.Parameters.AddWithValue("@email", unMecanicien.Role);
-                uneCmde.Parameters.AddWithValue("@adresse", unMecanicien.Adresse);
+                uneCmde.Parameters.AddWithValue("@nom", unEmploye.Nom);
+                uneCmde.Parameters.AddWithValue("@prenom", unEmploye.Prenom);
+                uneCmde.Parameters.AddWithValue("@email", unEmploye.Email);
+                uneCmde.Parameters.AddWithValue("@tel", unEmploye.Tel);
+                uneCmde.Parameters.AddWithValue("@adresse", unEmploye.Adresse);
+                uneCmde.Parameters.AddWithValue("@mdp", unEmploye.Mdp);
+                uneCmde.Parameters.AddWithValue("@role", unEmploye.Role);
 
                 uneCmde.ExecuteNonQuery();
                 this.maConnexion.Close();
@@ -62,9 +62,9 @@ namespace Intranet
             }
         }
 
-        public void InsertManager(Manager unManager)
+        public void UpdateEmploye(Employe unEmploye)
         {
-            string requete = "call InsertManager(@nom, @prenom, @email, @tel, @mdp, @role, @adresse);";
+            string requete = "call updateEmploye(@iduser, @nom, @prenom, @email, @tel, @adresse, @mdp, @role);";
             try
             {
                 this.maConnexion.Open();
@@ -72,13 +72,15 @@ namespace Intranet
                 MySqlCommand uneCmde = this.maConnexion.CreateCommand();
                 uneCmde.CommandText = requete;
                 //les correspondances entre variables MYSQL ET C#
-                uneCmde.Parameters.AddWithValue("@nom", unManager.Nom);
-                uneCmde.Parameters.AddWithValue("@prenom", unManager.Prenom);
-                uneCmde.Parameters.AddWithValue("@email", unManager.Email);
-                uneCmde.Parameters.AddWithValue("@email", unManager.Tel);
-                uneCmde.Parameters.AddWithValue("@mdp", unManager.Mdp);
-                uneCmde.Parameters.AddWithValue("@email", unManager.Role);
-                uneCmde.Parameters.AddWithValue("@adresse", unManager.Adresse);
+                uneCmde.Parameters.AddWithValue("@iduser", unEmploye.Id_user);
+                uneCmde.Parameters.AddWithValue("@nom", unEmploye.Nom);
+                uneCmde.Parameters.AddWithValue("@prenom", unEmploye.Prenom);
+                uneCmde.Parameters.AddWithValue("@email", unEmploye.Email);
+                uneCmde.Parameters.AddWithValue("@tel", unEmploye.Tel);
+                uneCmde.Parameters.AddWithValue("@adresse", unEmploye.Adresse);
+                uneCmde.Parameters.AddWithValue("@mdp", unEmploye.Mdp);
+                uneCmde.Parameters.AddWithValue("@role", unEmploye.Role);
+                
 
                 uneCmde.ExecuteNonQuery();
                 this.maConnexion.Close();
@@ -90,10 +92,9 @@ namespace Intranet
 
             }
         }
-
-        public void UpdateMecanicien(Mecanicien unMecanicien)
+        public void DeleteEmploye(int idEmploye)
         {
-            string requete = "call UpdateMecanicien(@iduser, @nom, @prenom, @email, @tel, @mdp, @role, @adresse);";
+            string requete = "call deleteEmploye (@idemploye);";
             try
             {
                 this.maConnexion.Open();
@@ -101,36 +102,7 @@ namespace Intranet
                 MySqlCommand uneCmde = this.maConnexion.CreateCommand();
                 uneCmde.CommandText = requete;
                 //les correspondances entre variables MYSQL ET C#
-                uneCmde.Parameters.AddWithValue("@idpers", unMecanicien.IdUser);
-                uneCmde.Parameters.AddWithValue("@nom", unMecanicien.Nom);
-                uneCmde.Parameters.AddWithValue("@prenom", unMecanicien.Prenom);
-                uneCmde.Parameters.AddWithValue("@email", unMecanicien.Email);
-                uneCmde.Parameters.AddWithValue("@email", unMecanicien.Tel);
-                uneCmde.Parameters.AddWithValue("@mdp", unMecanicien.Mdp);
-                uneCmde.Parameters.AddWithValue("@email", unMecanicien.Role);
-                uneCmde.Parameters.AddWithValue("@adresse", unMecanicien.Adresse);
-
-                uneCmde.ExecuteNonQuery();
-                this.maConnexion.Close();
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("Erreur de requete : " + requete);
-                Console.WriteLine(exp.Message);
-
-            }
-        }
-        public void DeleteMecanicien(int idMecanicien)
-        {
-            string requete = "call deleteMecanicien (@idmecanicien);";
-            try
-            {
-                this.maConnexion.Open();
-
-                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
-                uneCmde.CommandText = requete;
-                //les correspondances entre variables MYSQL ET C#
-                uneCmde.Parameters.AddWithValue("@idmecanicien", idMecanicien);
+                uneCmde.Parameters.AddWithValue("@idemploye", idEmploye);
 
                 uneCmde.ExecuteNonQuery();
                 this.maConnexion.Close();
@@ -142,10 +114,10 @@ namespace Intranet
             }
         }
 
-        public List<Mecanicien> SelectAllMecaniciens()
+        public List<Employe> SelectAllEmployes()
         {
             string requete = "select * from vueClients;";
-            List<Mecanicien> lesMecaniciens = new List<Mecanicien>();
+            List<Employe> lesEmployes = new List<Employe>();
             try
             {
                 this.maConnexion.Open();
@@ -160,8 +132,8 @@ namespace Intranet
                     {
                         while (unReader.Read())
                         {
-                            //instanciation d'un client
-                            Mecanicien unMecanicien = new Mecanicien(
+                            //instanciation d'un employe
+                            Employe unEmploye = new Employe(
                                 unReader.GetInt32(0),
                                 unReader.GetString(1),
                                 unReader.GetString(2),
@@ -173,7 +145,7 @@ namespace Intranet
                                 );
 
                             //ajouter dans la liste
-                            lesMecaniciens.Add(unMecanicien);
+                            lesEmployes.Add(unEmploye);
                         }
                     }
                 }
@@ -191,13 +163,13 @@ namespace Intranet
                 Console.WriteLine(exp.Message);
 
             }
-            return lesMecaniciens;
+            return lesEmployes;
         }
 
-        public Mecanicien SelectWhereMecanicien(int idMecanicien)
+        public Employe SelectWhereEmploye(string email, string mdp)
         {
-            string requete = "select * from vueMecaniciens where iduser = @idmecanicien;";
-            Mecanicien unMecanicien = null;
+            string requete = "select * from employe where email = @email and mdp = @mdp;";
+            Employe unEmploye = null;
             try
             {
                 this.maConnexion.Open();
@@ -205,7 +177,8 @@ namespace Intranet
                 MySqlCommand uneCmde = this.maConnexion.CreateCommand();
                 uneCmde.CommandText = requete;//prepare
 
-                uneCmde.Parameters.AddWithValue("@idmecanicien", idMecanicien);//on execute dans le reader
+                uneCmde.Parameters.AddWithValue("@email", email);
+                uneCmde.Parameters.AddWithValue("@mdp", mdp);//on execute dans le reader
                 // creation d'un curseur de résultats
                 DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
                 try
@@ -214,8 +187,8 @@ namespace Intranet
                     {
                         if (unReader.Read())
                         {
-                            //instanciation d'un client
-                            unMecanicien = new Mecanicien(
+                            //instanciation d'un employe
+                            unEmploye = new Employe(
                                 unReader.GetInt32(0),
                                 unReader.GetString(1),
                                 unReader.GetString(2),
@@ -243,59 +216,7 @@ namespace Intranet
                 Console.WriteLine(exp.Message);
 
             }
-            return unMecanicien;
-        }
-
-        public Manager SelectWhereManager(string email, string mdp)
-        {
-            string requete = "select * from vueManagers where email = @email and mdp = @mdp;";
-            Manager unManager = null;
-            try
-            {
-                this.maConnexion.Open();
-
-                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
-                uneCmde.CommandText = requete;
-
-                uneCmde.Parameters.AddWithValue("@email", email);
-                uneCmde.Parameters.AddWithValue("@mdp", mdp);
-                // creation d'un curseur de résultats
-                DbDataReader unReader = uneCmde.ExecuteReader();
-                try
-                {
-                    if (unReader.HasRows)
-                    {
-                        if (unReader.Read())
-                        {
-                            //instanciation d'un client
-                            unManager = new Manager(
-                                unReader.GetInt32(0),
-                                unReader.GetString(1),
-                                unReader.GetString(2),
-                                unReader.GetString(3),
-                                unReader.GetString(4),
-                                unReader.GetString(5),
-                                unReader.GetString(6),
-                                unReader.GetString(7)
-                                );
-                        }
-                    }
-                }
-                catch (Exception exp)
-                {
-                    Console.WriteLine("Erreur de requete : " + requete);
-                    Console.WriteLine(exp.Message);
-                }
-
-                this.maConnexion.Close();
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("Erreur de requete : " + requete);
-                Console.WriteLine(exp.Message);
-
-            }
-            return unManager;
+            return unEmploye;
         }
     }
 }

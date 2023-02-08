@@ -259,6 +259,8 @@ from offre o, candidature c
 where o.id_offre = c.id_offre
 );
 
+
+
 /*TRIGGERS*/
 
 drop trigger if exists InsertUtilisateurToCandidatOrClient;

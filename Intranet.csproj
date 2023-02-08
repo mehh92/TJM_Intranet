@@ -67,7 +67,7 @@
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
     <Content Include="images\logo.png" />
-    <Content Include="sql\depannage.sql" />
+    <Content Include="sql\tjm.sql" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />
   </ItemGroup>
