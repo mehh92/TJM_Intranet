@@ -1,15 +1,17 @@
-﻿using Microsoft.Analytics.Interfaces;
-using Microsoft.Analytics.Types.Sql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Depannage.controleur
+namespace Intranet
 {
-    internal class Absence
+    public class Absence
     {
+        private int id_absence, id_planning;
+        private string nom, prenom, email, tel, adresse, mdp, role;
 
-    }
-}
+        public Absence()
+        {
+
+        }

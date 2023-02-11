@@ -33,6 +33,7 @@ namespace Intranet
 
         }
 
+        //EMPLOYE
         public void InsertEmploye(Employe unEmploye)
         {
             string requete = "call insertEmploye(@nom, @prenom, @email, @tel, @adresse, @mdp, @role);";
@@ -61,7 +62,6 @@ namespace Intranet
 
             }
         }
-
         public void UpdateEmploye(Employe unEmploye)
         {
             string requete = "call updateEmploye(@iduser, @nom, @prenom, @email, @tel, @adresse, @mdp, @role);";
