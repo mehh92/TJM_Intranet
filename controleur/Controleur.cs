@@ -21,11 +21,11 @@ namespace Intranet
             unModele.DeleteEmploye(idEmploye);
         }
 
-        public static void UpdateEmploye(Employe unEmploye)
+        /*public static void UpdateEmploye(Employe unEmploye)
         {
             unModele.UpdateEmploye(unEmploye);
         }
-
+        */
         public static List<Employe> SelectAllEmployes()
         {
             return unModele.SelectAllEmployes();

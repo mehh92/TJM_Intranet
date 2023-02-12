@@ -62,7 +62,7 @@ namespace Intranet
 
             }
         }
-        public void UpdateEmploye(Employe unEmploye)
+       /* public void UpdateEmploye(Employe unEmploye)
         {
             string requete = "call updateEmploye(@iduser, @nom, @prenom, @email, @tel, @adresse, @mdp, @role);";
             try
@@ -92,6 +92,7 @@ namespace Intranet
 
             }
         }
+       */
         public void DeleteEmploye(int idEmploye)
         {
             string requete = "call deleteEmploye (@idemploye);";

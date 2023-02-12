@@ -68,6 +68,8 @@
     <Content Include="Default.aspx" />
     <Content Include="images\logo.png" />
     <Content Include="sql\tjm.sql" />
+    <Content Include="vue\vue_insert_employe.aspx" />
+    <Content Include="vue\vue_les_employes.aspx" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />
   </ItemGroup>
@@ -76,6 +78,7 @@
     <Compile Include="controleur\Controleur.cs" />
     <Compile Include="controleur\Employe.cs" />
     <Compile Include="controleur\Paie.cs" />
+    <Compile Include="controleur\Tache.cs" />
     <Compile Include="controleur\Vplanning.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

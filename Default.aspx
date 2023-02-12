@@ -100,22 +100,14 @@
         }
         switch(page)
         {
-            case 0:
-
-                break;
+            case 0: break;
 
 
-            case 1:
+            case 1: %> <!-- #include file="employe.aspx" --><% break;
 
-                break;
+            case 2: break;
 
-            case 2:
-
-                break;
-
-            case 3:
-               
-                break;
+            case 3: break;
 
             case 4:
                 Session.Remove("id");

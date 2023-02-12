@@ -142,22 +142,36 @@ create table candidature (
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
 create table paie (
-	id_paie int(5) auto_increment,
-	montant float(7,2),
-	date_versement varchar(20),
-	description varchar(30),
-	objet varchar(30),
-	PRIMARY KEY (id_paie)
+    id_paie int(5) auto_increment,
+    id_user int(5),
+    montant float(7,2),
+    date_versement varchar(20),
+    description varchar(30),
+    objet varchar(30),
+    PRIMARY KEY (id_paie),
+    FOREIGN KEY (id_user) references employe (id_user)
+    on update cascade
+    on delete cascade
+)
+ENGINE=innodb DEFAULT CHARSET=latin1;
+
+create table planning(
+	id_planning int(5) auto_increment,
+	id_user int(5),
+	date_planning varchar(30),
+	PRIMARY KEY (id_planning, id_user),
+	FOREIGN KEY (id_user) references employe (id_user)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
 create table absence (
 	id_absence int(5) auto_increment,
 	id_planning int(5),
+	id_user int(5),
+	type_absence enum ('congé payé', 'maladie', 'congé sans solde', 'formation'),
 	duree varchar(50),
-	motif enum,
 	PRIMARY KEY (id_absence),
-	FOREIGN KEY (id_planning) references planning (id_planning)
+	FOREIGN KEY (id_planning,id_user) references planning (id_planning, id_user)
 	on update cascade
 	on delete cascade
 )
@@ -167,24 +181,19 @@ ENGINE=innodb DEFAULT CHARSET=latin1;
 create table tache (
 	id_tache int(5) auto_increment,
 	id_planning int(5),
+	id_user int(5),
 	lieu varchar(50),
 	heure varchar(20),
 	motif varchar(50),
 	duree varchar(20),
 	PRIMARY KEY (id_tache),
-	FOREIGN KEY (id_planning) references planning (id_planning)
+	FOREIGN KEY (id_planning, id_user) references planning (id_planning, id_user)
 	on update cascade
 	on delete cascade
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
 
-create table planning(
-	id_planning int(5) auto_increment,
-	date_planning varchar(30),
-	PRIMARY KEY (id_planning)
-)
-ENGINE=innodb DEFAULT CHARSET=latin1;
 
 create table piece(
 	id_piece int(5) auto_increment,
@@ -305,6 +314,27 @@ Begin
 
 	insert into utilisateur values (null, e_nom, e_prenom, e_email, e_tel, e_mdp, e_role);
 End $
+delimiter ;
+
+delimiter $
+create procedure deleteEmploye (IN e_id_user int(3))
+BEGIN
+    delete from employe
+    where id_user = e_id_user;
+END $
+delimiter ;
+
+delimiter $
+create procedure updateEmploye (IN e_id_user int(3), IN e_nom varchar(50), IN e_prenom varchar(50), IN e_email varchar(50), IN e_tel varchar(50), IN e_adresse varchar(50), IN e_mdp varchar(50), IN e_role varchar(50))
+BEGIN
+    update utilisateur
+    set nom = e_nom, prenom = e_prenom, email = e_email, tel = e_tel, mdp = e_mdp, role = e_role
+    where id_user = e_id_user;
+
+    update employe
+    set adresse = e_adresse
+    where id_user = e_id_user;
+END $
 delimiter ;
 
 

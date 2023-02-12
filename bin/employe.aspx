@@ -6,38 +6,42 @@
 
 
 <%
-    if (Request["page"] != null && Request["action"] != null && Request["idmecanicien"] != null)
+    if (Request["page"] != null && Request["action"] != null && Request["idemploye"] != null)
     {
-        string action = Request["action"];
-        int idmecanicien = int.Parse(Request["idmecanicien"]);
+        String action = Request["action"];
+        int idemploye = int.Parse(Request["idemploye"]);
         switch(action)
         {
-            case "sup" : Intranet.Controleur.DeleteMecanicien(idmecanicien);
+            case "sup" : Intranet.Controleur.DeleteEmploye(idemploye);
             break;
+
+            //case "edit" : Intranet.Controleur.UpdateEmploye(idemploye);
+            //break;
         }
 
     }
 
 %>
 
-<!-- #include file="vue/vue_insert_mecanicien.aspx"-->
+<!-- #include file="vue/vue_insert_employe.aspx"-->
 
 <%
     String message = "";
 
     if (Request.Form["valider"] != null)
     {
-        string nom = Request.Form["nom"];
-        string prenom = Request.Form["prenom"];
-        string email = Request.Form["email"];
-
-        String mdp = Request.Form["mdp"];
-
+        String nom = Request.Form["nom"];
+        String prenom = Request.Form["prenom"];
+        String email = Request.Form["email"];
+        String tel = Request.Form["tel"];
         String adresse = Request.Form["adresse"];
+        String mdp = Request.Form["mdp"];
+        String role = Request.Form["role"];
 
-        Intranet.Mecanicien unMecanicien = New Mecanicien(nom, prenom, email, mdp, adresse);
-        Intranet.Controleur.InsertMecanicien(unMecanicien);
-        message = "<br> Insertion réussie du mécanicien";
+
+        Intranet.Employe unEmploye = new Employe(nom, prenom, email, tel, adresse, mdp, role);
+        Intranet.Controleur.InsertEmploye(unEmploye);
+        message = "<br> Insertion réussie de l'employé";
     }
 %>
 
@@ -45,8 +49,8 @@
 
 
 <%
-    List<Intranet.Mecanicien> lesMecaniciens = Intranet.Controleur.SelectAllMecaniciens();
+    List<Intranet.Employe> lesEmployes = Intranet.Controleur.SelectAllEmployes();
 
 %>
 
-<!-- #include file="vue/vue_les_mecaniciens.aspx" -->
+<!-- #include file="vue/vue_les_employes.aspx" -->
