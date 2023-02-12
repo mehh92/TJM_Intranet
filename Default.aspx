@@ -21,7 +21,7 @@
                 <img class="voiture" src="images/logo.png" alt="logo de TJM Automobile">
             </div>
             <%
-                if (Session["id"] != null)
+                if (Session["id_user"] != null)
                 {
             %>
                 <div class="text-nav">
@@ -35,7 +35,7 @@
 
         
         <%
-            if (Session["id"] == null)
+            if (Session["id_user"] == null)
             { 
         %>
             <!-- #include file="connexion.aspx" -->
@@ -43,7 +43,7 @@
         
     
     <%
-        if (Session["id"] != null)
+        if (Session["id_user"] != null)
         { 
             %>
             <div class="flex-home">
@@ -75,7 +75,7 @@
                         case 3: break;
                         case 4: break;
                         case 5:
-                            Session.Remove("id");
+                            Session.Remove("id_user");
                             Session.Abandon();
                             Response.Redirect("Default.aspx", false);
                             break;

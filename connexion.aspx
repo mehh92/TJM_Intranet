@@ -15,10 +15,13 @@
         }
         else
         {
-            Session["id"] = unEmploye.Id_user;
+            Session["id_user"] = unEmploye.Id_user;
             Session["nom"] = unEmploye.Nom;
             Session["prenom"] = unEmploye.Prenom;
             Session["email"] = unEmploye.Email;
+            Session["tel"] = unEmploye.Tel;
+            Session["adresse"] = unEmploye.Adresse;
+            Session["role"] = unEmploye.Role;
 
             chaineConnect += "Bienvenu " + Session["Prenom"];
         }
