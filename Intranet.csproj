@@ -61,6 +61,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="accueil.aspx" />
+    <Content Include="connexion.aspx" />
     <Content Include="employe.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

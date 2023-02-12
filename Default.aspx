@@ -26,7 +26,7 @@
             %>
                 <div class="text-nav">
                     <ul>
-                        <li><a href="Default.aspx?page=4"><img class="nav-img" src="images/deconnexion.png" width="50px" height="50px"></a></li>
+                        <li><a href="Default.aspx?page=5"><img class="nav-img" src="images/deconnexion.png" width="50px" height="50px"></a></li>
                     </ul>
                 </div>
             <%  } %>
@@ -38,86 +38,53 @@
             if (Session["id"] == null)
             { 
         %>
-        <!-- #include file="vue/vue_connexion.aspx" -->
-        <% } %>
+            <!-- #include file="connexion.aspx" -->
+         <% } %>
         
-    <%
-        if (Request.Form["seConnecter"] != null)
-        {
-            string email = Request.Form["email"];
-            string mdp = Request.Form["mdp"];
-            Intranet.Employe unEmploye = Intranet.Controleur.SelectWhereEmploye(email, mdp);
-
-            string chaineConnect = "";
-            if(unEmploye == null)
-            {
-                chaineConnect += "veuillez vérifier vos identifiants";
-            }
-            else
-            {
-                Session["id"] = unEmploye.Id_user;
-                Session["nom"] = unEmploye.Nom;
-                Session["prenom"] = unEmploye.Prenom;
-                Session["email"] = unEmploye.Email;
-
-                chaineConnect += "Bienvenu " + Session["Prenom"];
-            }
-            Response.Write(chaineConnect);
-            Response.Redirect("Default.aspx?page=0");
-        }
-    %>
-
-
-
     
     <%
-        /*string chaineHeader =" <a href='Default.aspx?page=1'>Gestion des clients</a> <a href='Default.aspx?page=2'>Gestion des techniciens</a> <a href='Default.aspx?page=3'>Gestion des interventions</a><a href='Default.aspx?page=4'>Déconnexion</a> ";*/
-      
         if (Session["id"] != null)
-        { %>
-        <div class="container-bandeau text-nav">
-            <ul class="bandeau">
-                <li><a class="effect" href="Default.aspx?page=0">Accueil</a></li>
-                <li><a class="effect" href="Default.aspx?page=1">Mon profil</a></li>
-                <li><a class="effect" href="Default.aspx?page=2">Mon plannings</a></li>
-                <li><a class="effect" href="Default.aspx?page=3">Mes fiches de paie</a></li>
-            </ul>
-        </div>
+        { 
+            %>
+            <div class="flex-home">
+                <div class="text-nav">
+                    <ul class="bandeau">
+                        <li><a class="effect" href="Default.aspx?page=1">Accueil</a></li>
+                        <li><a class="effect" href="Default.aspx?page=2">Mon profil</a></li>
+                        <li><a class="effect" href="Default.aspx?page=3">Mon plannings</a></li>
+                        <li><a class="effect" href="Default.aspx?page=4">Mes fiches de paie</a></li>
+                    </ul>
+                </div>
+                <div>
+            
+                    <% 
 
-             <% /*Response.Write(chaineHeader);*/
-                 }
-    %>
+                    int page = 0;
+                    if (Request["page"] != null)
+                    {
+                        page = int.Parse(Request["page"]);
+                    } 
+                    else
+                    {
+                        page = 0;
+                    }
+                    switch(page)
+                    {
+                        case 1: %> <!-- #include file="accueil.aspx" --><%break;
+                        case 2: %> <!-- #include file="employe.aspx" --><% break;
+                        case 3: break;
+                        case 4: break;
+                        case 5:
+                            Session.Remove("id");
+                            Session.Abandon();
+                            Response.Redirect("Default.aspx", false);
+                            break;
 
-
-    <%
-        int page = 0;
-        if (Request["page"] != null)
-        {
-            page = int.Parse(Request["page"]);
-        } else
-        {
-            page = 0;
+                    }
         }
-        switch(page)
-        {
-            case 0: break;
-
-
-            case 1: %> <!-- #include file="employe.aspx" --><% break;
-
-            case 2: break;
-
-            case 3: break;
-
-            case 4:
-                Session.Remove("id");
-                Session.Abandon();
-                Response.Redirect("Default.aspx?page=0", false);
-                break;
-
-        }
-
-        %>
+                    %>
+               </div>
+         </div> 
 
     
 </body>

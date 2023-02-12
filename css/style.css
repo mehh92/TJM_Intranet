@@ -29,6 +29,13 @@ body {
 
 /*RESPONSIVE*/
 
+/*HOME*/
+
+.flex-home
+{
+    display: flex;
+    align-items: flex-start;
+}
 
 /*HEADER*/
 
@@ -223,13 +230,7 @@ font-size: 22px;
     text-align: left;
     padding-left: 42px;
     padding-top: 30px;
-    position: absolute;
-    left: 0;
-    top: 0;
     height: 1000px;
+    margin-bottom: inherit;
     box-shadow: #bebebe 6px 3px 6px;
-}
-
-.container-bandeau {
-    position: relative;
 }
