@@ -61,6 +61,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="absence.aspx" />
     <Content Include="accueil.aspx" />
     <Content Include="connexion.aspx" />
     <Content Include="employe.aspx">
@@ -68,8 +69,11 @@
     </Content>
     <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
+    <Content Include="gestion_employe.aspx" />
     <Content Include="images\logo.png" />
+    <Content Include="planning.aspx" />
     <Content Include="sql\tjm.sql" />
+    <Content Include="tache.aspx" />
     <Content Include="vue\vue_insert_employe.aspx" />
     <Content Include="vue\vue_les_employes.aspx" />
     <Content Include="Web.config" />

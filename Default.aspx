@@ -26,7 +26,7 @@
             %>
                 <div class="text-nav">
                     <ul>
-                        <li><a href="Default.aspx?page=5"><img class="nav-img" src="images/deconnexion.png" width="50px" height="50px"></a></li>
+                        <li><a href="Default.aspx?page=6"><img class="nav-img" src="images/deconnexion.png" width="50px" height="50px"></a></li>
                     </ul>
                 </div>
             <%  } %>
@@ -44,7 +44,7 @@
     
     <%
         if (Session["id_user"] != null)
-        { 
+        {
             %>
             <div class="flex-home">
                 <div class="text-nav">
@@ -52,7 +52,15 @@
                         <li><a class="effect" href="Default.aspx?page=1">Accueil</a></li>
                         <li><a class="effect" href="Default.aspx?page=2">Mon profil</a></li>
                         <li><a class="effect" href="Default.aspx?page=3">Mon plannings</a></li>
-                        <li><a class="effect" href="Default.aspx?page=4">Mes fiches de paie</a></li>
+                        <%
+                            if (Session["role"] != null && Session["role"].Equals("manager"))
+                            {
+                            %>
+                        <li><a class="effect" href="Default.aspx?page=4">Gestion employés</a></li>
+                        <%
+                            }
+                            %>
+                        <li><a class="effect" href="Default.aspx?page=5">Mes fiches de paie</a></li>
                     </ul>
                 </div>
                 <div>
@@ -74,7 +82,8 @@
                         case 2: %> <!-- #include file="employe.aspx" --><% break;
                         case 3: break;
                         case 4: break;
-                        case 5:
+                        case 5: break;
+                        case 6:
                             Session.Remove("id_user");
                             Session.Abandon();
                             Response.Redirect("Default.aspx", false);
