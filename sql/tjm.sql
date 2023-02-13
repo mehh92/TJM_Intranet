@@ -155,23 +155,23 @@ create table paie (
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
+/*
 create table planning(
-	id_planning int(5) auto_increment,
+	date_heure_planning datetime,
 	id_user int(5),
-	date_planning varchar(30),
-	PRIMARY KEY (id_planning, id_user),
+	PRIMARY KEY (date_heure_planning, id_user),
 	FOREIGN KEY (id_user) references employe (id_user)
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
+*/
 
 create table absence (
 	id_absence int(5) auto_increment,
-	id_planning int(5),
 	id_user int(5),
+	date_absence varchar(70),
 	type_absence enum ('congé payé', 'maladie', 'congé sans solde', 'formation'),
-	duree varchar(50),
 	PRIMARY KEY (id_absence),
-	FOREIGN KEY (id_planning,id_user) references planning (id_planning, id_user)
+	FOREIGN KEY (id_user) references employe (id_user)
 	on update cascade
 	on delete cascade
 )
@@ -180,19 +180,16 @@ ENGINE=innodb DEFAULT CHARSET=latin1;
 
 create table tache (
 	id_tache int(5) auto_increment,
-	id_planning int(5),
 	id_user int(5),
+	date_heure_tache varchar(70),
 	lieu varchar(50),
-	heure varchar(20),
 	motif varchar(50),
-	duree varchar(20),
 	PRIMARY KEY (id_tache),
-	FOREIGN KEY (id_planning, id_user) references planning (id_planning, id_user)
+	FOREIGN KEY (id_user) references employe (id_user)
 	on update cascade
 	on delete cascade
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
-
 
 
 create table piece(
@@ -260,7 +257,17 @@ from offre o, candidature c
 where o.id_offre = c.id_offre
 );
 
+create or replace view VuelesAbsences as (
+select e.id_user, e.nom, e.prenom, e.role, a.date_absence, a.type_absence
+from employe e, absence a
+where e.id_user = a.id_user
+);
 
+create or replace view VuelesTaches as (
+select e.id_user, e.nom, e.prenom, e.role, t.date_heure_tache, t.lieu, t.motif
+from employe e, tache t
+where e.id_user = t.id_user
+);
 
 /*TRIGGERS*/
 
@@ -343,3 +350,5 @@ delimiter ;
 insert into utilisateur values (null,'chiche','mehdi','mehh92350@gmail.com','0650409399','123','client');
 
 call insertEmploye ('test', 'test', 'test', 'test', 'test', 'test', 'manager');
+
+call insertEmploye ('test', 'test', 'test', 'test', '123', '123', 'mecanicien');

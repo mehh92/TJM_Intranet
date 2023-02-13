@@ -8,31 +8,34 @@ namespace Intranet
 {
     public class Paie
     {
-        private int id_paie;
+        private int id_paie, id_user;
         private float montant;
         private string date_versement, description, objet;
 
         public Paie()
         {
             this.id_paie = 0;
+            this.id_user = 0;
             this.montant = 0;
             this.date_versement = "";
             this.description = "";
             this.objet = "";
         }
 
-        public Paie(int id_paie, float montant, string date_versement, string description, string objet)
+        public Paie(int id_paie, int id_user, float montant, string date_versement, string description, string objet)
         {
             this.id_paie = id_paie;
+            this.id_user = id_user;
             this.montant = montant;
             this.date_versement = date_versement;
             this.description = description;
             this.objet = objet;
         }
 
-        public Paie(float montant, string date_versement, string description, string objet)
+        public Paie(int id_user, float montant, string date_versement, string description, string objet)
         {
             this.id_paie = 0;
+            this.id_user = id_user;
             this.montant = montant;
             this.date_versement = date_versement;
             this.description = description;
@@ -44,6 +47,10 @@ namespace Intranet
             get => id_paie; set => id_paie = value;
         }
 
+        public int Id_user
+        {
+            get => id_user; set => id_user = value;
+        }
         public float Montant
         { 
             get => montant; set => montant = value;
