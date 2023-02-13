@@ -117,7 +117,7 @@ namespace Intranet
 
         public List<Employe> SelectAllEmployes()
         {
-            string requete = "select * from vueClients;";
+            string requete = "select * from employe;";
             List<Employe> lesEmployes = new List<Employe>();
             try
             {
@@ -219,5 +219,64 @@ namespace Intranet
             }
             return unEmploye;
         }
+
+
+        // ABSENCE
+        public void InsertAbsence(Absence uneAbsence)
+        {
+            string requete = "call insertAbsence(@id_user, @date_absence, @type_absence);";
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                //les correspondances entre variables MYSQL ET C#
+                uneCmde.Parameters.AddWithValue("@id_user", uneAbsence.Id_user);
+                uneCmde.Parameters.AddWithValue("@date_absence", uneAbsence.Date_absence);
+                uneCmde.Parameters.AddWithValue("@type_absence", uneAbsence.Type_absence);
+
+                uneCmde.ExecuteNonQuery();
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        // TACHE
+        public void InsertTache(Tache uneTache)
+        {
+            string requete = "call insertTache(@id_user, @date_heure_tache, @lieu, @motif);";
+
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                //les correspondances entre variables MYSQL ET C#
+                uneCmde.Parameters.AddWithValue("@id_user", uneTache.Id_user);
+                uneCmde.Parameters.AddWithValue("@date_heure_tache", uneTache.Date_heure_tache);
+                uneCmde.Parameters.AddWithValue("@lieu", uneTache.Lieu);
+                uneCmde.Parameters.AddWithValue("@motif", uneTache.Motif);
+
+                uneCmde.ExecuteNonQuery();
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        // PAIE
+
+        // VABSENCES
+
+        // VTACHES
     }
 }

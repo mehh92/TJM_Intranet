@@ -146,7 +146,7 @@ create table paie (
     id_user int(5),
     montant float(7,2),
     date_versement varchar(20),
-    description varchar(30),
+    description varchar(100),
     objet varchar(30),
     PRIMARY KEY (id_paie),
     FOREIGN KEY (id_user) references employe (id_user)
@@ -155,21 +155,11 @@ create table paie (
 )
 ENGINE=innodb DEFAULT CHARSET=latin1;
 
-/*
-create table planning(
-	date_heure_planning datetime,
-	id_user int(5),
-	PRIMARY KEY (date_heure_planning, id_user),
-	FOREIGN KEY (id_user) references employe (id_user)
-)
-ENGINE=innodb DEFAULT CHARSET=latin1;
-*/
-
 create table absence (
 	id_absence int(5) auto_increment,
 	id_user int(5),
 	date_absence varchar(70),
-	type_absence enum ('congé payé', 'maladie', 'congé sans solde', 'formation'),
+	type_absence enum ('conge paye', 'maladie', 'conge sans solde', 'formation'),
 	PRIMARY KEY (id_absence),
 	FOREIGN KEY (id_user) references employe (id_user)
 	on update cascade
@@ -311,6 +301,7 @@ Delimiter ;
 
 /*PROCEDURE*/
 
+/*employe*/
 delimiter $
 create procedure insertEmploye (IN e_nom varchar(50), IN e_prenom varchar(50), IN e_email varchar(50), IN e_tel varchar(50), IN e_adresse varchar(50), IN e_mdp varchar(50), IN e_role varchar(50))
 Begin
@@ -334,14 +325,50 @@ delimiter ;
 delimiter $
 create procedure updateEmploye (IN e_id_user int(3), IN e_nom varchar(50), IN e_prenom varchar(50), IN e_email varchar(50), IN e_tel varchar(50), IN e_adresse varchar(50), IN e_mdp varchar(50), IN e_role varchar(50))
 BEGIN
-    update utilisateur
-    set nom = e_nom, prenom = e_prenom, email = e_email, tel = e_tel, mdp = e_mdp, role = e_role
+    update employe
+    set nom = e_nom, prenom = e_prenom, email = e_email, tel = e_tel, mdp = e_mdp, role = e_role, adresse = e_adresse
     where id_user = e_id_user;
 
-    update employe
-    set adresse = e_adresse
+	update utilisateur
+    set nom = e_nom, prenom = e_prenom, email = e_email, tel = e_tel, mdp = e_mdp, role = e_role
     where id_user = e_id_user;
 END $
+delimiter ;
+
+/*absence*/
+
+delimiter $
+create procedure insertAbsence (IN a_id_user int(3), IN a_date_absence varchar(70), IN a_type_absence varchar(50))
+Begin
+	insert into absence values (null, a_id_user, a_date_absence, a_type_absence);
+End $
+delimiter ;
+
+
+/*tache*/
+
+delimiter $
+create procedure insertTache (IN t_id_user int(3), IN t_date_heure_tache varchar(70), IN t_lieu varchar(50), IN t_motif varchar(50))
+Begin
+	insert into tache values (null, t_id_user, t_date_heure_tache, t_lieu, t_motif);
+End $
+delimiter ;
+
+delimiter $
+create procedure deleteAbsence (IN a_id_absence int(3))
+BEGIN
+    delete from employe
+    where id_user = e_id_user;
+END $
+delimiter ;
+
+/*paie*/
+
+delimiter $
+create procedure insertPaie (IN p_id_user int(3), IN p_montant float(8,2), IN p_date_versement varchar(50), IN p_description varchar(100), IN p_objet varchar(50))
+Begin
+	insert into paie values (null, p_id_user, p_montant, p_date_versement, p_description, p_objet);
+End $
 delimiter ;
 
 

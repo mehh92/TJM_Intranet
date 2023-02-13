@@ -8,7 +8,7 @@
 <%
     if (Request["page"] != null && Request["action"] != null && Request["idemploye"] != null)
     {
-        String action = Request["action"];
+        string action = Request["action"];
         int idemploye = int.Parse(Request["idemploye"]);
         switch(action)
         {
@@ -26,18 +26,17 @@
 <!-- #include file="vue/vue_insert_employe.aspx"-->
 
 <%
-    String message = "";
+    string message = "";
 
     if (Request.Form["valider"] != null)
     {
-        String nom = Request.Form["nom"];
-        String prenom = Request.Form["prenom"];
-        String email = Request.Form["email"];
-        String tel = Request.Form["tel"];
-        String adresse = Request.Form["adresse"];
-        String mdp = Request.Form["mdp"];
-        String role = Request.Form["role"];
-
+        string nom = Request.Form["nom"];
+        string prenom = Request.Form["prenom"];
+        string email = Request.Form["email"];
+        string tel = Request.Form["tel"];
+        string adresse = Request.Form["adresse"];
+        string mdp = Request.Form["mdp"];
+        string role = Request.Form["role"];
 
         Intranet.Employe unEmploye = new Employe(nom, prenom, email, tel, adresse, mdp, role);
         Intranet.Controleur.InsertEmploye(unEmploye);
