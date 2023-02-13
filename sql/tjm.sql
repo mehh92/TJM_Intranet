@@ -344,6 +344,22 @@ Begin
 End $
 delimiter ;
 
+delimiter $
+create procedure deleteAbsence (IN a_id_absence int(3))
+BEGIN
+    delete from absence
+    where id_absence = a_id_absence;
+END $
+delimiter ;
+
+delimiter $
+create procedure updateAbsence (IN a_id_absence int(3), IN a_id_user int(3), IN a_date_absence varchar(70), IN a_type_absence varchar(50))
+BEGIN
+    update absence
+    set id_user = a_id_user, date_absence = a_date_absence, type_absence = a_type_absence
+    where id_absence = a_id_absence;
+END $
+delimiter ;
 
 /*tache*/
 
@@ -355,10 +371,20 @@ End $
 delimiter ;
 
 delimiter $
-create procedure deleteAbsence (IN a_id_absence int(3))
+create procedure deleteTache (IN t_id_tache int(3))
 BEGIN
-    delete from employe
-    where id_user = e_id_user;
+    delete from tache
+    where id_tache = t_id_tache;
+END $
+delimiter ;
+
+
+delimiter $
+create procedure updateTache (IN t_id_tache int(3), IN t_id_user int(3), IN t_date_heure_tache varchar(70), IN t_lieu varchar(50), IN t_motif varchar(50))
+BEGIN
+    update tache
+    set id_user = t_id_user, date_heure_tache = t_date_heure_tache, lieu = t_lieu, motif = t_motif
+    where id_tache = t_id_tache;
 END $
 delimiter ;
 
@@ -369,6 +395,23 @@ create procedure insertPaie (IN p_id_user int(3), IN p_montant float(8,2), IN p_
 Begin
 	insert into paie values (null, p_id_user, p_montant, p_date_versement, p_description, p_objet);
 End $
+delimiter ;
+
+delimiter $
+create procedure deletePaie (IN p_id_paie int(3))
+BEGIN
+    delete from paie
+    where id_paie = p_id_paie;
+END $
+delimiter ;
+
+delimiter $
+create procedure updatePaie (IN p_id_paie int(3), IN p_id_user int(3), IN p_montant float(8,2), IN p_date_versement varchar(50), IN p_description varchar(100), IN p_objet varchar(50))
+BEGIN
+    update paie
+    set id_user = p_id_user, montant = p_montant, date_versement = p_date_versement, description = p_description, objet = p_objet
+    where id_paie = p_id_paie;
+END $
 delimiter ;
 
 
