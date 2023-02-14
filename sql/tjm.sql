@@ -381,10 +381,10 @@ delimiter ;
 
 
 delimiter $
-create procedure updateTache (IN t_id_tache int(3), IN t_id_user int(3), IN t_date_heure_tache varchar(70), IN t_lieu varchar(50), IN t_motif varchar(50))
+create procedure updateTache (IN t_id_tache int(3), IN t_id_user int(3), IN t_date_tache varchar(70), IN t_heure_tache varchar(70), IN t_lieu varchar(50), IN t_motif varchar(50))
 BEGIN
     update tache
-    set id_user = t_id_user, date_heure_tache = t_date_heure_tache, lieu = t_lieu, motif = t_motif
+    set id_user = t_id_user, date_tache = t_date_tache, heure_tache = t_heure_tache, lieu = t_lieu, motif = t_motif
     where id_tache = t_id_tache;
 END $
 delimiter ;

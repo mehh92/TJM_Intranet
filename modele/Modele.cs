@@ -921,7 +921,8 @@ namespace Intranet
                                 unReader.GetString(3),
                                 unReader.GetString(4),
                                 unReader.GetString(5),
-                                unReader.GetString(6)
+                                unReader.GetString(6),
+                                unReader.GetString(7)
                                 );
 
                             //ajouter dans la liste
@@ -975,7 +976,8 @@ namespace Intranet
                             unReader.GetString(3),
                             unReader.GetString(4),
                             unReader.GetString(5),
-                            unReader.GetString(6)
+                            unReader.GetString(6),
+                            unReader.GetString(7)
                             );
                         }
                     }
