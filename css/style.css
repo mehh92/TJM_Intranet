@@ -234,3 +234,13 @@ font-size: 22px;
     margin-bottom: inherit;
     box-shadow: #bebebe 6px 3px 6px;
 }
+
+/* CONNEXION */
+
+.width100 {
+    width: 100%;
+}
+
+container-connexion table {
+    margin: auto;
+}
