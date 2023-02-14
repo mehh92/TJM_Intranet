@@ -78,17 +78,16 @@
                     }
                     switch(page)
                     {
-                        case 1: %> <!-- #include file="accueil.aspx" --><%break;
+                        case 1: %> <!-- #include file="accueil.aspx" --><% break;
                         case 2: %> <!-- #include file="employe.aspx" --><% break;
-                        case 3: break;
-                        case 4: break;
-                        case 5: break;
+                        case 3: %> <!-- #include file="planning.aspx" --><% break;
+                        case 4: %> <!-- #include file="gestion_employe.aspx" --><% break;
+                        case 5: %> <!-- #include file="paie.aspx" --><% break;
                         case 6:
                             Session.Remove("id_user");
                             Session.Abandon();
                             Response.Redirect("Default.aspx", false);
                             break;
-
                     }
         }
                     %>

@@ -11,6 +11,8 @@ namespace Intranet
     {
         private static Modele unModele = new Modele("localhost", "tjm", "root", "");
 
+
+        //EMPLOYE
         public static void InsertEmploye(Employe unEmploye)
         {
             unModele.InsertEmploye(unEmploye);
@@ -35,5 +37,15 @@ namespace Intranet
         {
             return unModele.SelectWhereEmploye(email, mdp);
         }
+
+        //ABSENCE
+
+        //TACHE
+
+        //PAIE
+
+        //VABSENCES
+
+        //VTACHES
     }
 }

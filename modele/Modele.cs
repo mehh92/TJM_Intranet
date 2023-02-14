@@ -190,16 +190,15 @@ namespace Intranet
                         {
                             //instanciation d'un employe
                             unEmploye = new Employe(
-                                unReader.GetInt32(0),
-                                unReader.GetString(1),
-                                unReader.GetString(2),
-                                unReader.GetString(3),
-                                unReader.GetString(4),
-                                unReader.GetString(5),
-                                unReader.GetString(6),
-                                unReader.GetString(7)
-
-                                );
+                            unReader.GetInt32(0),
+                            unReader.GetString(1),
+                            unReader.GetString(2),
+                            unReader.GetString(3),
+                            unReader.GetString(4),
+                            unReader.GetString(5),
+                            unReader.GetString(6),
+                            unReader.GetString(7)
+                            );
                         }
                     }
                 }
@@ -246,6 +245,30 @@ namespace Intranet
             }
         }
 
+        public void DeleteAbsence(int id_absence)
+        {
+            string requete = "call deleteAbsence (@id_absence);";
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                //les correspondances entre variables MYSQL ET C#
+                uneCmde.Parameters.AddWithValue("@id_absence", id_absence);
+
+                uneCmde.ExecuteNonQuery();
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        
+
         // TACHE
         public void InsertTache(Tache uneTache)
         {
@@ -273,10 +296,181 @@ namespace Intranet
             }
         }
 
+        public void DeleteTache(int id_tache)
+        {
+            string requete = "call deleteTache (@id_tache);";
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                //les correspondances entre variables MYSQL ET C#
+                uneCmde.Parameters.AddWithValue("@id_tache", id_tache);
+
+                uneCmde.ExecuteNonQuery();
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+            }
+        }
+
         // PAIE
+
+        public void InsertPaie(Paie unePaie)
+        {
+            string requete = "call insertPaie(@id_user, @montant, @date_versement, @description, @objet);";
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                //les correspondances entre variables MYSQL ET C#
+                uneCmde.Parameters.AddWithValue("@id_user", unePaie.Id_user);
+                uneCmde.Parameters.AddWithValue("@date_absence", unePaie.Montant);
+                uneCmde.Parameters.AddWithValue("@type_absence", unePaie.Date_versement);
+                uneCmde.Parameters.AddWithValue("@type_absence", unePaie.Description);
+                uneCmde.Parameters.AddWithValue("@type_absence", unePaie.Objet);
+
+                uneCmde.ExecuteNonQuery();
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+            }
+        }
+
+        public void DeletePaie(int id_paie)
+        {
+            string requete = "call deletePaie (@id_paie);";
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                //les correspondances entre variables MYSQL ET C#
+                uneCmde.Parameters.AddWithValue("@id_paie", id_paie);
+
+                uneCmde.ExecuteNonQuery();
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+            }
+        }
 
         // VABSENCES
 
+        public List<Vabsences> SelectAllVabsences()
+        {
+            string requete = "select * from VuelesAbsences;";
+            List<Vabsences> lesVabsences = new List<Vabsences>();
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                // creation d'un curseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader();
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        while (unReader.Read())
+                        {
+                            //instanciation d'un employe
+                            Vabsences uneVabsences = new Vabsences(
+                                unReader.GetInt32(0),
+                                unReader.GetString(1),
+                                unReader.GetString(2),
+                                unReader.GetString(3),
+                                unReader.GetString(4),
+                                unReader.GetString(5)
+                                );
+
+                            //ajouter dans la liste
+                            lesVabsences.Add(uneVabsences);
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine("Erreur de requete : " + requete);
+                    Console.WriteLine(exp.Message);
+                }
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+
+            }
+            return lesVabsences;
+        }
+
         // VTACHES
+
+        public List<Vtaches> SelectAllVtaches()
+        {
+            string requete = "select * from Vuelestaches;";
+            List<Vtaches> lesVtaches = new List<Vtaches>();
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                // creation d'un curseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader();
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        while (unReader.Read())
+                        {
+                            //instanciation d'un employe
+                            Vtaches uneVtaches = new Vtaches(
+                                unReader.GetInt32(0),
+                                unReader.GetString(1),
+                                unReader.GetString(2),
+                                unReader.GetString(3),
+                                unReader.GetString(4),
+                                unReader.GetString(5),
+                                unReader.GetString(6)
+                                );
+
+                            //ajouter dans la liste
+                            lesVtaches.Add(uneVtaches);
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine("Erreur de requete : " + requete);
+                    Console.WriteLine(exp.Message);
+                }
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+
+            }
+            return lesVtaches;
+        }
     }
 }
