@@ -171,7 +171,8 @@ ENGINE=innodb DEFAULT CHARSET=latin1;
 create table tache (
 	id_tache int(5) auto_increment,
 	id_user int(5),
-	date_heure_tache varchar(70),
+	date_tache varchar(70),
+	heure_tache varchar(70),
 	lieu varchar(50),
 	motif varchar(50),
 	PRIMARY KEY (id_tache),
@@ -254,7 +255,7 @@ where e.id_user = a.id_user
 );
 
 create or replace view VuelesTaches as (
-select e.id_user, e.nom, e.prenom, e.role, t.date_heure_tache, t.lieu, t.motif
+select e.id_user, e.nom, e.prenom, e.role, t.date_tache, heure_tache, t.lieu, t.motif
 from employe e, tache t
 where e.id_user = t.id_user
 );
@@ -364,9 +365,9 @@ delimiter ;
 /*tache*/
 
 delimiter $
-create procedure insertTache (IN t_id_user int(3), IN t_date_heure_tache varchar(70), IN t_lieu varchar(50), IN t_motif varchar(50))
+create procedure insertTache (IN t_id_user int(3), IN t_date_tache varchar(70), IN t_heure_tache varchar(70), IN t_lieu varchar(50), IN t_motif varchar(50))
 Begin
-	insert into tache values (null, t_id_user, t_date_heure_tache, t_lieu, t_motif);
+	insert into tache values (null, t_id_user, t_date_tache, t_heure_tache, t_lieu, t_motif);
 End $
 delimiter ;
 

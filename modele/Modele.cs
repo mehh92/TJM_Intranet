@@ -367,11 +367,60 @@ namespace Intranet
             return uneAbsence;
         }
 
+        public Absence SelectWhereAbsence(int id_user, string date_absence)
+        {
+            string requete = "select * from absence where id_user = @id_user and month(date_absence) = @date_absence;";
+            Absence uneAbsence = null;
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;//prepare
+
+                uneCmde.Parameters.AddWithValue("@id_absence", id_user);
+                uneCmde.Parameters.AddWithValue("@date_absence", date_absence);
+                //on execute dans le reader
+                // creation d'un curseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        if (unReader.Read())
+                        {
+                            //instanciation d'un employe
+                            uneAbsence = new Absence(
+                            unReader.GetInt32(0),
+                            unReader.GetInt32(1),
+                            unReader.GetString(2),
+                            unReader.GetString(3)
+                            );
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine("Erreur de requete : " + requete);
+                    Console.WriteLine(exp.Message);
+                }
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+
+            }
+            return uneAbsence;
+        }
+
 
         // TACHE
         public void InsertTache(Tache uneTache)
         {
-            string requete = "call insertTache(@id_user, @date_heure_tache, @lieu, @motif);";
+            string requete = "call insertTache(@id_user, @date_tache, @heure_tache, @lieu, @motif);";
 
             try
             {
@@ -381,7 +430,8 @@ namespace Intranet
                 uneCmde.CommandText = requete;
                 //les correspondances entre variables MYSQL ET C#
                 uneCmde.Parameters.AddWithValue("@id_user", uneTache.Id_user);
-                uneCmde.Parameters.AddWithValue("@date_heure_tache", uneTache.Date_heure_tache);
+                uneCmde.Parameters.AddWithValue("@date_tache", uneTache.Date_tache);
+                uneCmde.Parameters.AddWithValue("@heure_tache", uneTache.Heure_tache);
                 uneCmde.Parameters.AddWithValue("@lieu", uneTache.Lieu);
                 uneCmde.Parameters.AddWithValue("@motif", uneTache.Motif);
 
@@ -419,7 +469,7 @@ namespace Intranet
 
         public Tache SelectWhereTache(int id_user)
         {
-            string requete = "select * from tache where id_user = @id_user;";
+            string requete = "select * from tache where id_user = @id_user and date_tache = curdate();";
             Tache uneTache = null;
             try
             {
@@ -444,7 +494,59 @@ namespace Intranet
                             unReader.GetInt32(1),
                             unReader.GetString(2),
                             unReader.GetString(3),
-                            unReader.GetString(4)
+                            unReader.GetString(4),
+                            unReader.GetString(5)
+                            );
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine("Erreur de requete : " + requete);
+                    Console.WriteLine(exp.Message);
+                }
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+
+            }
+            return uneTache;
+        }
+
+        public Tache SelectWhereTache(int id_user, string date_tache)
+        {
+            string requete = "select * from tache where id_user = @id_user and date_tache = @date_tache;";
+            Tache uneTache = null;
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;//prepare
+
+                uneCmde.Parameters.AddWithValue("@id_absence", id_user);
+                uneCmde.Parameters.AddWithValue("@date_tache", date_tache);
+                //on execute dans le reader
+                // creation d'un curseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        if (unReader.Read())
+                        {
+                            //instanciation d'un employe
+                            uneTache = new Tache(
+                            unReader.GetInt32(0),
+                            unReader.GetInt32(1),
+                            unReader.GetString(2),
+                            unReader.GetString(3),
+                            unReader.GetString(4),
+                            unReader.GetString(5)
                             );
                         }
                     }

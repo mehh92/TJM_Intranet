@@ -54,6 +54,11 @@ namespace Intranet
             return unModele.SelectWhereAbsence(id_user);
         }
 
+        public static Absence SelectWhereAbsence(int id_user, string date_absence)
+        {
+            return SelectWhereAbsence(id_user, date_absence);
+        }
+
         //TACHE
 
         public static void InsertTache(Tache uneTache)
@@ -71,6 +76,11 @@ namespace Intranet
             return unModele.SelectWhereTache(id_user);
         }
 
+        public static Tache SelectWhereTache(int id_user, string date_tache)
+        {
+            return SelectWhereTache(id_user, date_tache);
+        }
+
         //PAIE
 
         public static void InsertPaie(Paie unePaie)
@@ -86,6 +96,11 @@ namespace Intranet
         public static Paie SelectWherePaie(int id_user)
         {
             return unModele.SelectWherePaie(id_user);
+        }
+
+        public Paie SelectWherePaie(string elem)
+        {
+            return unModele.SelectWherePaie(elem);
         }
 
         //VABSENCES

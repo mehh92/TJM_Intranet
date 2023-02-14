@@ -9,36 +9,39 @@ namespace Intranet
     public class Vtaches
     {
         private int id_user;
-        private string nom, prenom, role, date_heure_tache, lieu, motif;
+        private string nom, prenom, role, date_tache, heure_tache, lieu, motif;
         public Vtaches()
         {
             this.id_user = 0;
             this.nom = "";
             this.prenom = "";
             this.role = "";
-            this.date_heure_tache = "";
+            this.date_tache = "";
+            this.heure_tache = "";
             this.lieu = "";
             this.motif = "";
         }
 
-        public Vtaches(int id_user, string nom, string prenom, string role, string date_heure_tache, string lieu, string motif)
+        public Vtaches(int id_user, string nom, string prenom, string role, string date_tache, string heure_tache, string lieu, string motif)
         {
             this.id_user = id_user;
             this.nom = nom;
             this.prenom = prenom;
             this.role = role;
-            this.date_heure_tache = date_heure_tache;
+            this.date_tache = date_tache;
+            this.heure_tache = heure_tache;
             this.lieu = lieu;
             this.motif = motif;
         }
 
-        public Vtaches(string nom, string prenom, string role, string date_heure_tache, string lieu, string motif)
+        public Vtaches(string nom, string prenom, string role, string date_tache, string heure_tache, string lieu, string motif)
         {
             this.id_user = 0;
             this.nom = nom;
             this.prenom = prenom;
             this.role = role;
-            this.date_heure_tache = date_heure_tache;
+            this.date_tache = date_tache;
+            this.heure_tache= heure_tache;
             this.lieu = lieu;
             this.motif = motif;
         }
@@ -63,11 +66,15 @@ namespace Intranet
             get => role; set => role = value;
         }
 
-        public string Date_heure_tache
+        public string Date_tache
         {
-            get => date_heure_tache; set => date_heure_tache = value;
+            get => date_tache; set => date_tache = value;
         }
 
+        public string Heure_tache
+        {
+            get => heure_tache; set => heure_tache = value;
+        }
         public string Lieu
         {
             get => lieu; set => lieu = value;
