@@ -320,6 +320,9 @@ create procedure deleteEmploye (IN e_id_user int(3))
 BEGIN
     delete from employe
     where id_user = e_id_user;
+
+	delete from utilisateur
+    where id_user = e_id_user;
 END $
 delimiter ;
 
