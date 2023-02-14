@@ -1,11 +1,13 @@
 <%@ Import Namespace="Intranet" %>
+<%@ Import Namespace="System.Collections.Generic" %>
 
-<h2>Gestion des mécaniciens</h2>
+<h2>Gestion des employés</h2>
 
-<h4>Insertion d'un mécanicien</h4>
+<h4>Insertion d'un employé</h4>
 
 
 <%
+    Employe lEmploye = null;
     if (Request["page"] != null && Request["action"] != null && Request["idemploye"] != null)
     {
         string action = Request["action"];
@@ -15,18 +17,20 @@
             case "sup" : Intranet.Controleur.DeleteEmploye(idemploye);
             break;
 
-            //case "edit" : Intranet.Controleur.UpdateEmploye(idemploye);
-            //break;
+            case "edit" : lEmploye = Intranet.Controleur.SelectWhereEmploye(idemploye);
+            break;
         }
 
     }
+
+
 
 %>
 
 <!-- #include file="vue/vue_insert_employe.aspx"-->
 
 <%
-    string message = "";
+    String message = "";
 
     if (Request.Form["valider"] != null)
     {
@@ -42,7 +46,27 @@
         Intranet.Controleur.InsertEmploye(unEmploye);
         message = "<br> Insertion réussie de l'employé";
     }
+
+      if (Request.Form["modifier"] != null ){
+        String nom = Request.Form["nom"];
+        String prenom = Request.Form["prenom"];
+        String email = Request.Form["email"];
+        String tel = Request.Form["tel"];
+        String adresse = Request.Form["adresse"];
+        String mdp = Request.Form["mdp"];
+        String role = Request.Form["role"];
+        int id_user = int.Parse(Request["idemploye"]);
+
+        Intranet.Employe unEmploye = new Employe(id_user, nom, prenom, email, tel, adresse, mdp, role);
+
+        Intranet.Controleur.UpdateEmploye(unEmploye);
+        message = "<br> Modification reussie";
+        Response.Redirect("Default.aspx?page=2");
+        
+    }
 %>
+
+
 
 <%= message %>
 

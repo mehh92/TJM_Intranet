@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace Intranet
             this.bdd = bdd;
             this.user = user;
             this.mdp = mdp;
-            string url = "SslMode=None;  SERVER=" + this.serveur + "; Database=" + this.bdd + "; User ID=" + this.user + "; Password=" + this.mdp;
+            string url = "SslMode=None;  SERVER=" + this.serveur + "; Port=3306; Database=" + this.bdd + "; User ID=" + this.user + "; Password=" + this.mdp;
 
             try
             {
@@ -30,6 +31,70 @@ namespace Intranet
             {
                 Console.WriteLine(exp.Message + " Erreur de connexion a : " + url);
             }
+
+        }
+
+        public Employe SelectWhereEmploye(string email, string mdp)
+        {
+            string requete = "select * from employe where email = @email and mdp = @mdp;";
+            Employe unEmploye = null;
+            MySqlCommand uneCmde = null;
+            try
+            {
+                this.maConnexion.Open();
+                uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                uneCmde.Parameters.AddWithValue("@email", email);
+                uneCmde.Parameters.AddWithValue("@mdp", mdp);
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+
+                DbDataReader unReader = uneCmde.ExecuteReader();
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        if (unReader.Read())
+                        {
+                            unEmploye = new Employe(
+                            unReader.GetInt32(0),
+                            unReader.GetString(1),
+                            unReader.GetString(2),
+                            unReader.GetString(3),
+                            unReader.GetString(4),
+                            unReader.GetString(5),
+                            unReader.GetString(6),
+                            unReader.GetString(7)
+                            );
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Debug.WriteLine(uneCmde.CommandText);
+                    foreach (MySqlParameter unParam in uneCmde.Parameters)
+                    {
+                        Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                    }
+                    Debug.WriteLine("Erreur de requete :" + requete);
+                    Debug.WriteLine(exp.Message);
+                }
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+                Debug.WriteLine("Erreur de requete :" + requete);
+                Debug.WriteLine(exp.Message);
+            }
+            return unEmploye;
 
         }
 
@@ -62,14 +127,14 @@ namespace Intranet
 
             }
         }
-       /* public void UpdateEmploye(Employe unEmploye)
+        public void UpdateEmploye(Employe unEmploye)
         {
             string requete = "call updateEmploye(@iduser, @nom, @prenom, @email, @tel, @adresse, @mdp, @role);";
+            MySqlCommand uneCmde = null;
             try
             {
                 this.maConnexion.Open();
-
-                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde = this.maConnexion.CreateCommand();
                 uneCmde.CommandText = requete;
                 //les correspondances entre variables MYSQL ET C#
                 uneCmde.Parameters.AddWithValue("@iduser", unEmploye.Id_user);
@@ -80,19 +145,21 @@ namespace Intranet
                 uneCmde.Parameters.AddWithValue("@adresse", unEmploye.Adresse);
                 uneCmde.Parameters.AddWithValue("@mdp", unEmploye.Mdp);
                 uneCmde.Parameters.AddWithValue("@role", unEmploye.Role);
-                
-
                 uneCmde.ExecuteNonQuery();
                 this.maConnexion.Close();
             }
             catch (Exception exp)
             {
-                Console.WriteLine("Erreur de requete : " + requete);
-                Console.WriteLine(exp.Message);
-
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+                Debug.WriteLine("Erreur de requete :" + requete);
+                Debug.WriteLine(exp.Message);
             }
         }
-       */
+
         public void DeleteEmploye(int idEmploye)
         {
             string requete = "call deleteEmploye (@idemploye);";
@@ -167,57 +234,65 @@ namespace Intranet
             return lesEmployes;
         }
 
-        public Employe SelectWhereEmploye(string email, string mdp)
+        public Employe SelectWhereEmploye(int idEmploye)
         {
-            string requete = "select * from employe where email = @email and mdp = @mdp;";
+            string requete = "select * from employe where id_user = @idemploye;";
             Employe unEmploye = null;
+            MySqlCommand uneCmde = null;
             try
             {
                 this.maConnexion.Open();
+                uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                uneCmde.Parameters.AddWithValue("@idemploye", idEmploye);
 
-                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
-                uneCmde.CommandText = requete;//prepare
-
-                uneCmde.Parameters.AddWithValue("@email", email);
-                uneCmde.Parameters.AddWithValue("@mdp", mdp);//on execute dans le reader
-                // creation d'un curseur de résultats
-                DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
+                //creation d'un cruseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader();
                 try
                 {
                     if (unReader.HasRows)
                     {
                         if (unReader.Read())
                         {
-                            //instanciation d'un employe
-                            unEmploye = new Employe(
-                                unReader.GetInt32(0),
-                                unReader.GetString(1),
-                                unReader.GetString(2),
-                                unReader.GetString(3),
-                                unReader.GetString(4),
-                                unReader.GetString(5),
-                                unReader.GetString(6),
-                                unReader.GetString(7)
+                            //instanciation d'un client
 
-                                );
+                            unEmploye = new Employe(
+                            unReader.GetInt32(0),
+                            unReader.GetString(1),
+                            unReader.GetString(2),
+                            unReader.GetString(3),
+                            unReader.GetString(4),
+                            unReader.GetString(5),
+                            unReader.GetString(6),
+                            unReader.GetString(7)
+                            );
                         }
                     }
                 }
                 catch (Exception exp)
                 {
-                    Console.WriteLine("Erreur de requete : " + requete);
-                    Console.WriteLine(exp.Message);
+                    Debug.WriteLine(uneCmde.CommandText);
+                    foreach (MySqlParameter unParam in uneCmde.Parameters)
+                    {
+                        Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                    }
+                    Debug.WriteLine("Erreur de requete :" + requete);
+                    Debug.WriteLine(exp.Message);
                 }
-
                 this.maConnexion.Close();
             }
             catch (Exception exp)
             {
-                Console.WriteLine("Erreur de requete : " + requete);
-                Console.WriteLine(exp.Message);
-
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+                Debug.WriteLine("Erreur de requete :" + requete);
+                Debug.WriteLine(exp.Message);
             }
             return unEmploye;
+
         }
 
 
