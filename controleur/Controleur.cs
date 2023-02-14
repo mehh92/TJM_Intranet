@@ -23,11 +23,11 @@ namespace Intranet
             unModele.DeleteEmploye(idEmploye);
         }
 
-        /*public static void UpdateEmploye(Employe unEmploye)
+        public static void UpdateEmploye(Employe unEmploye)
         {
             unModele.UpdateEmploye(unEmploye);
         }
-        */
+
         public static List<Employe> SelectAllEmployes()
         {
             return unModele.SelectAllEmployes();
@@ -37,6 +37,13 @@ namespace Intranet
         {
             return unModele.SelectWhereEmploye(email, mdp);
         }
+
+
+        public static Employe SelectWhereEmploye(int idEmploye)
+        {
+            return unModele.SelectWhereEmploye(idEmploye);
+        }
+
 
         //ABSENCE
         public static void InsertAbsence(Absence uneAbsence)
@@ -125,5 +132,6 @@ namespace Intranet
         {
             return unModele.SelectWhereVtaches(elem);
         }
+    }
 
-        }
+}

@@ -16,7 +16,6 @@ C:\Users\zebez\Desktop\Intranet\TJM_Intranet\obj\Debug\Intranet.csproj.CoreCompi
 C:\Users\zebez\Desktop\Intranet\TJM_Intranet\obj\Debug\Intranet.csproj.CopyComplete
 C:\Users\zebez\Desktop\Intranet\TJM_Intranet\obj\Debug\Depannage.dll
 C:\Users\zebez\Desktop\Intranet\TJM_Intranet\obj\Debug\Depannage.pdb
-C:\Users\zebez\Desktop\Intranet\TJM_Intranet\bin\mecaniciens.aspx
 C:\Users\Mehdi\source\repos\Intranet\bin\employe.aspx
 C:\Users\btari\Desktop\Intranet\TJM_Intranet\bin\employe.aspx
 C:\Users\btari\Desktop\Intranet\TJM_Intranet\bin\Depannage.dll.config
@@ -28,3 +27,4 @@ C:\Users\btari\Desktop\Intranet\TJM_Intranet\obj\Debug\Intranet.csproj.CoreCompi
 C:\Users\btari\Desktop\Intranet\TJM_Intranet\obj\Debug\Intranet.csproj.CopyComplete
 C:\Users\btari\Desktop\Intranet\TJM_Intranet\obj\Debug\Depannage.dll
 C:\Users\btari\Desktop\Intranet\TJM_Intranet\obj\Debug\Depannage.pdb
+C:\Users\zebez\Desktop\Intranet\TJM_Intranet\bin\employe.aspx

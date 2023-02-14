@@ -8,12 +8,15 @@
         <td>Email</td>
         <td>Adresse</td>
         <td>Tel</td>
+        <td>Mdp</td>
         <td>Role</td>
         <td>Opérations</td>
     </tr>
+    
     <%
-    string chaine = "";
-    foreach(Employe unEmploye in lesEmployes)
+        String chaine = "";
+
+        foreach(Employe unEmploye in lesEmployes)
     {
         chaine += "<tr>";
 
@@ -23,11 +26,12 @@
         chaine += "<td>" + unEmploye.Email + "</td>";
         chaine += "<td>" + unEmploye.Adresse + "</td>";
         chaine += "<td>" + unEmploye.Tel + "</td>";
+        chaine += "<td>" + unEmploye.Mdp + "</td>";
         chaine += "<td>" + unEmploye.Role + "</td>";
 
         chaine += "<td>";
-        chaine += "<a href='Default.aspx?page=1&action=sup&idemploye=" + unEmploye.Id_user + "'>Supprimer</a>";
-        chaine += "<a href='Default.aspx?page=1&action=edit&idemploye=" + unEmploye.Id_user + "'>Modifier</a>";
+        chaine += "<a href='Default.aspx?page=2&action=sup&idemploye=" + unEmploye.Id_user + "'>Supprimer</a>";
+        chaine += "<a href='Default.aspx?page=2&action=edit&idemploye=" + unEmploye.Id_user + "'>Modifier</a>";
 
         chaine += "</td>";
 
