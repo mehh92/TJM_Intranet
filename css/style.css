@@ -32,10 +32,8 @@ body {
 /*CSS GENERALE*/
 
 .titre-page {
-    margin-left: 50px;
-    width: 35%;
-    text-align: center;
-    margin-top: 20px;
+    margin-left: 5%;
+    margin-top: 30px;
     margin-bottom: 50px;
 }
 
@@ -304,10 +302,6 @@ font-size: 22px;
     box-shadow: 0px 1px 2px rgb(0 0 0 / 30%);
 }
 
-.margin-input-info {
-    
-}
-
 .margin-label-info {
     margin-bottom: 2px;
     margin-top: 10px;
@@ -375,4 +369,50 @@ font-size: 22px;
 .div-accueil {
     width: 62%;
     margin: 0 auto;
+}
+
+/*PAIE*/
+
+.border-paie {
+    width: 35%;
+    height: 85px;
+    margin-left: 100px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 2px rgb(0 0 0 / 30%);
+}
+
+.rechercher-flex {
+    justify-content: space-evenly;
+    display: flex;
+}
+
+.input-paie {
+    width: 85%!important;
+}
+
+.container-paie {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.titre-paie {
+    margin-left: 5%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.input-rechercher-paie {
+    background: inherit;
+    border: inherit;
+}
+
+.img-rechercher {
+    opacity: .7;
+}
+
+.img-rechercher:hover {
+    opacity: 1;
 }

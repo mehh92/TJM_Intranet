@@ -73,9 +73,11 @@
     <Content Include="images\edit.png" />
     <Content Include="images\img-connexion.jpg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\rechercher.png" />
     <Content Include="images\soon.jpg" />
     <Content Include="paie.aspx" />
     <Content Include="planning.aspx" />
+    <Content Include="rechercher %281%29.png" />
     <Content Include="script\functions.js" />
     <Content Include="sql\tjm.sql" />
     <Content Include="tache.aspx" />
