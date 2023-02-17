@@ -73,6 +73,7 @@
     <Content Include="images\edit.png" />
     <Content Include="images\img-connexion.jpg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\soon.jpg" />
     <Content Include="paie.aspx" />
     <Content Include="planning.aspx" />
     <Content Include="script\functions.js" />

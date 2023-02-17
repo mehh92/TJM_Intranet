@@ -20,7 +20,7 @@
 <!-- #include file="vue/vue_modifier_profil.aspx"-->
 
 <%
-    String message = "";
+    string message = "";
 
       if (Request.Form["valider"] != null ){
 
@@ -31,7 +31,7 @@
         string tel = Request.Form["tel"];
         string adresse = Request.Form["adresse"];
         string mdp = Request.Form["mdp"];
-        String role = Request.Form["role"];
+        string role = (string) Session["role"];
 
         Intranet.Employe unEmploye = new Employe(id_user, nom, prenom, email, tel, adresse, mdp, role);
 
@@ -43,10 +43,3 @@
 %>
 
 <%= message %>
-
-<%
-    List<Intranet.Employe> lesEmployes = Intranet.Controleur.SelectAllEmployes();
-
-%>
-
-<!-- #include file="vue/vue_les_employes.aspx" -->
