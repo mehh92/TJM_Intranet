@@ -50,6 +50,10 @@ namespace Intranet
         {
             unModele.InsertAbsence(uneAbsence);
         }
+        public static void UpdateAbsence(Absence uneAbsence)
+        {
+            unModele.UpdateAbsence(uneAbsence);
+        }
 
         public static void DeleteAbsence(int id_absence)
         {
@@ -71,6 +75,11 @@ namespace Intranet
         public static void InsertTache(Tache uneTache)
         {
             unModele.InsertTache(uneTache);
+        }
+
+        public static void UpdateTache(Tache uneTache)
+        {
+            unModele.UpdateTache(uneTache);
         }
 
         public static void DeleteTache(int id_tache)

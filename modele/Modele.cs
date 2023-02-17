@@ -20,7 +20,7 @@ namespace Intranet
             this.bdd = bdd;
             this.user = user;
             this.mdp = mdp;
-            string url = "SslMode=None;  SERVER=" + this.serveur + "; Database=" + this.bdd + "; User ID=" + this.user + "; Password=" + this.mdp;
+            string url = "SslMode=None;  SERVER=" + this.serveur + "; Port=3306; Database=" + this.bdd + "; User ID=" + this.user + "; Password=" + this.mdp;
 
             try
             {
@@ -369,6 +369,35 @@ namespace Intranet
             }
         }
 
+        public void UpdateAbsence(Absence uneAbsence)
+        {
+            string requete = "call UpdateAbsence(@id_absence, @id_user, @date_absence, type_absence);";
+            MySqlCommand uneCmde = null;
+            try
+            {
+                this.maConnexion.Open();
+                uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                //les correspondances entre variables MYSQL ET C#
+                uneCmde.Parameters.AddWithValue("@id_absence", uneAbsence.Id_absence);
+                uneCmde.Parameters.AddWithValue("@id_user", uneAbsence.Id_user);
+                uneCmde.Parameters.AddWithValue("@date_absence", uneAbsence.Date_absence);
+                uneCmde.Parameters.AddWithValue("@type_absence", uneAbsence.Type_absence);
+                uneCmde.ExecuteNonQuery();
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+                Debug.WriteLine("Erreur de requete :" + requete);
+                Debug.WriteLine(exp.Message);
+            }
+        }
+
         public void DeleteAbsence(int id_absence)
         {
             string requete = "call deleteAbsence (@id_absence);";
@@ -390,6 +419,7 @@ namespace Intranet
                 Console.WriteLine(exp.Message);
             }
         }
+
 
         public Absence SelectWhereAbsence(int id_user)
         {
@@ -514,6 +544,37 @@ namespace Intranet
             {
                 Console.WriteLine("Erreur de requete : " + requete);
                 Console.WriteLine(exp.Message);
+            }
+        }
+
+        public void UpdateTache(Tache uneTache)
+        {
+            string requete = "call updateTache(@id_tache, @id_user, @date_tache, @heure_tache, @lieu, @motif);";
+            MySqlCommand uneCmde = null;
+            try
+            {
+                this.maConnexion.Open();
+                uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                //les correspondances entre variables MYSQL ET C#
+                uneCmde.Parameters.AddWithValue("@id_tache", uneTache.Id_tache);
+                uneCmde.Parameters.AddWithValue("@id_user", uneTache.Id_user);
+                uneCmde.Parameters.AddWithValue("@date_tache", uneTache.Date_tache);
+                uneCmde.Parameters.AddWithValue("@heure_tache", uneTache.Heure_tache);
+                uneCmde.Parameters.AddWithValue("@lieu", uneTache.Lieu);
+                uneCmde.Parameters.AddWithValue("@motif", uneTache.Motif);
+                uneCmde.ExecuteNonQuery();
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+                Debug.WriteLine("Erreur de requete :" + requete);
+                Debug.WriteLine(exp.Message);
             }
         }
 

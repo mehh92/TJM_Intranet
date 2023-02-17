@@ -423,6 +423,6 @@ delimiter ;
 
 insert into utilisateur values (null,'chiche','mehdi','mehh92350@gmail.com','0650409399','123','client');
 
-call insertEmploye ('test', 'test', 'test', 'test', 'test', 'test', 'manager');
+call insertEmploye ('jp', 'li', 'jp', 'sqd', 'qdssq', 'test', 'manager');
 
 call insertEmploye ('test', 'test', 'test', 'test', '123', '123', 'mecanicien');

@@ -21,6 +21,7 @@
             Session["email"] = unEmploye.Email;
             Session["tel"] = unEmploye.Tel;
             Session["adresse"] = unEmploye.Adresse;
+            Session["mdp"] = unEmploye.Mdp;
             Session["role"] = unEmploye.Role;
 
             chaineConnect += "Bienvenu " + Session["Prenom"];

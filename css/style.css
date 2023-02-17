@@ -29,6 +29,16 @@ body {
 
 /*RESPONSIVE*/
 
+/*CSS GENERALE*/
+
+.titre-page {
+    margin-left: 50px;
+    width: 35%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
 /*HOME*/
 
 .flex-home
@@ -49,6 +59,7 @@ header {
     position: relative;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
     flex-direction: row;
     padding: 20px 0;
 }
@@ -60,6 +71,28 @@ header {
     flex-wrap: wrap;
     width: 20%;
     margin-left: 43px;
+}
+
+.titre-nav 
+{
+    margin-right: 43px;
+}
+
+.header-info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 43px;
+}
+
+.header-infoconnexion {
+    width: 130px;
+    text-align: center;
+    margin-right: 20px;
+    color: #fff;
+    border-radius: 5px;
+    border: solid lightseagreen;
+    background-color: lightseagreen;
 }
 
 .voiture {
@@ -233,4 +266,79 @@ font-size: 22px;
     height: 1000px;
     margin-bottom: inherit;
     box-shadow: #bebebe 6px 3px 6px;
+}
+
+/* CONNEXION */
+
+.width100 {
+    width: 100%;
+}
+
+
+.container-connexion img {
+    width: 200px;
+    display: block;
+    margin: auto;
+}
+
+/*CONTENU*/
+
+.conteneur
+{
+    width: 100%;
+}
+
+/* EMPLOYE */
+
+.container-employe {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.border-employe {
+    width: 90%;
+    height: 630px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 2px rgb(0 0 0 / 30%);
+}
+
+.margin-input-info {
+    
+}
+
+.margin-label-info {
+    margin-bottom: 2px;
+    margin-top: 10px;
+}
+
+.bouton-form {
+    text-align: -webkit-center;
+    margin-top: 30px;
+}
+
+.input-bouton {
+    color: #fff;
+    background-color: #FF745C;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.input-bouton-modifier {
+    background-color: lightseagreen;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.lien-btn-modifier {
+    color: #fff;
+    text-decoration: none;
+}
+
+.lien-btn-modifier:hover
+{
+    color: #fff;
 }
