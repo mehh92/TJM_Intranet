@@ -1,4 +1,3 @@
-
 <div class="container-paie">
     <h2 class="titre-paie">Mes fiches de paies</h2>
 	<form method="post" class="border border-paie">

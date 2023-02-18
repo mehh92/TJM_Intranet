@@ -109,12 +109,12 @@ namespace Intranet
             unModele.DeletePaie(id_paie);
         }
 
-        public static Paie SelectWherePaie(int id_user)
+        public static List<Paie> SelectWherePaie(int id_user)
         {
             return unModele.SelectWherePaie(id_user);
         }
 
-        public Paie SelectWherePaie(string elem)
+        public static List<Paie> SelectWherePaie(string elem)
         {
             return unModele.SelectWherePaie(elem);
         }

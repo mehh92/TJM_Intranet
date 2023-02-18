@@ -22,4 +22,3 @@ function toggleHideShow() {
         document.getElementById("btn-valider").style.display = "block";
     }
 }
-    

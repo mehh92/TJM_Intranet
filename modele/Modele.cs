@@ -751,10 +751,10 @@ namespace Intranet
             }
         }
 
-        public Paie SelectWherePaie(int id_user)
+        public List<Paie> SelectWherePaie(int id_user)
         {
             string requete = "select * from paie where id_user = @id_user;";
-            Paie unePaie = null;
+            List<Paie> lesPaies = new List<Paie>();
             try
             {
                 this.maConnexion.Open();
@@ -773,7 +773,7 @@ namespace Intranet
                         if (unReader.Read())
                         {
                             //instanciation d'un employe
-                            unePaie = new Paie(
+                            Paie unePaie = new Paie(
                             unReader.GetInt32(0),
                             unReader.GetInt32(1),
                             unReader.GetFloat(2),
@@ -798,13 +798,13 @@ namespace Intranet
                 Console.WriteLine(exp.Message);
 
             }
-            return unePaie;
+            return lesPaies;
         }
 
-        public Paie SelectWherePaie(string elem)
+        public List<Paie> SelectWherePaie(string elem)
         {
             string requete = "select * from paie where date_versement = @elem or description = @elem or objet = @elem;";
-            Paie unePaie = null;
+            List<Paie> lesPaies = new List<Paie>();
 
             try
             {
@@ -824,7 +824,7 @@ namespace Intranet
                         if (unReader.Read())
                         {
                             //instanciation d'un employe
-                            unePaie = new Paie(
+                            Paie unePaie = new Paie(
                             unReader.GetInt32(0),
                             unReader.GetInt32(1),
                             unReader.GetFloat(2),
@@ -849,7 +849,7 @@ namespace Intranet
                 Console.WriteLine(exp.Message);
 
             }
-            return unePaie;
+            return lesPaies;
         }
 
         // VABSENCES
