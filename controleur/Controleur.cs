@@ -114,9 +114,9 @@ namespace Intranet
             return unModele.SelectWherePaie(id_user);
         }
 
-        public static List<Paie> SelectWherePaie(string elem)
+        public static List<Paie> SelectWherePaie(int id_user, string elem)
         {
-            return unModele.SelectWherePaie(elem);
+            return unModele.SelectWherePaie(id_user, elem);
         }
 
         //VABSENCES

@@ -37,6 +37,11 @@ body {
     margin-bottom: 50px;
 }
 
+.card-paie {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
 /*HOME*/
 
 .flex-home
@@ -395,7 +400,7 @@ font-size: 22px;
     display: flex;
     align-items: center;
     margin-top: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 }
 
 .titre-paie {
@@ -415,4 +420,63 @@ font-size: 22px;
 
 .img-rechercher:hover {
     opacity: 1;
+}
+
+.card-bod {
+    font-size: 15px;
+    width: 23% !important;
+    box-shadow: 1px 1px 2px rgb(0 0 0 / 30%) !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.card-bod:hover 
+{
+    background-color: #F9F9F9;
+    transform: scale(1.03);
+    transition: all 0.3s ease-in-out;
+}
+
+.fleche-card
+{
+    width: 25px;
+    height: 25px;
+    opacity: 0.7;
+}
+
+.fleche-card:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+.border {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 2px rgb(0 0 0 / 30%);
+}
+
+.card-titre-paie
+{
+    text-align: center;
+}
+
+.card-paie {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.card-titre-montant
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.color-paie {
+    color:#385B64;
+    font-weight: 600;
 }

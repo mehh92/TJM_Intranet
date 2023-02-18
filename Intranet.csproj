@@ -71,6 +71,7 @@
     <Content Include="Default.aspx" />
     <Content Include="gestion_employe.aspx" />
     <Content Include="images\edit.png" />
+    <Content Include="images\dl.png" />
     <Content Include="images\img-connexion.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="images\rechercher.png" />

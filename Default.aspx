@@ -70,8 +70,8 @@
                         <li><a class="effect" href="Default.aspx?page=5">Mes fiches de paie</a></li>
                     </ul>
                 </div>
+
                 <div class="conteneur">
-            
                     <% 
 
                     int page = 0;
@@ -109,6 +109,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script>
+
         function generatePDF() {
 
             var pdfObject = jsPDFInvoiceTemplate.default(props);
@@ -145,8 +146,8 @@
                 }
             },
             business: {
-                name: "Business Name",
-                address: "Albania, Tirane ish-Dogana, Durres 2001",
+                name: "",
+                address: "",
                 phone: "(+355) 069 11 11 111",
                 email: "email@example.com",
                 email_1: "info@example.al",

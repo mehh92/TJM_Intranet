@@ -753,8 +753,77 @@ namespace Intranet
 
         public List<Paie> SelectWherePaie(int id_user)
         {
-            string requete = "select * from paie where id_user = @id_user;";
+            string requete = "select * from paie where id_user = @id_user order by date_versement DESC;";
             List<Paie> lesPaies = new List<Paie>();
+            MySqlCommand uneCmde = null;
+            try
+            {
+                this.maConnexion.Open();
+
+                uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;//prepare
+
+                uneCmde.Parameters.AddWithValue("@id_user", id_user);
+
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+                //on execute dans le reader
+                // creation d'un curseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        while (unReader.Read())
+                        {
+                            //instanciation d'un employe
+                            Paie unePaie = new Paie(
+                            unReader.GetInt32(0),
+                            unReader.GetInt32(1),
+                            unReader.GetFloat(2),
+                            unReader.GetString(3),
+                            unReader.GetString(4),
+                            unReader.GetString(5)
+                            );
+                            lesPaies.Add(unePaie);
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Debug.WriteLine(uneCmde.CommandText);
+                    foreach (MySqlParameter unParam in uneCmde.Parameters)
+                    {
+                        Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                    }
+                    Debug.WriteLine("Erreur de requete :" + requete);
+                    Debug.WriteLine(exp.Message);
+                }
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+                Debug.WriteLine("Erreur de requete :" + requete);
+                Debug.WriteLine(exp.Message);
+
+            }
+            return lesPaies;
+        }
+
+        public List<Paie> SelectWherePaie(int id_user, string elem)
+        {
+            string requete = "select * from paie where id_user = @id_user and year(date_versement) = @elem order by date_versement DESC;";
+            List<Paie> lesPaies = new List<Paie>();
+
             try
             {
                 this.maConnexion.Open();
@@ -763,56 +832,6 @@ namespace Intranet
                 uneCmde.CommandText = requete;//prepare
 
                 uneCmde.Parameters.AddWithValue("@id_user", id_user);
-                //on execute dans le reader
-                // creation d'un curseur de résultats
-                DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
-                try
-                {
-                    if (unReader.HasRows)
-                    {
-                        if (unReader.Read())
-                        {
-                            //instanciation d'un employe
-                            Paie unePaie = new Paie(
-                            unReader.GetInt32(0),
-                            unReader.GetInt32(1),
-                            unReader.GetFloat(2),
-                            unReader.GetString(3),
-                            unReader.GetString(4),
-                            unReader.GetString(5)
-                            );
-                        }
-                    }
-                }
-                catch (Exception exp)
-                {
-                    Console.WriteLine("Erreur de requete : " + requete);
-                    Console.WriteLine(exp.Message);
-                }
-
-                this.maConnexion.Close();
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine("Erreur de requete : " + requete);
-                Console.WriteLine(exp.Message);
-
-            }
-            return lesPaies;
-        }
-
-        public List<Paie> SelectWherePaie(string elem)
-        {
-            string requete = "select * from paie where date_versement = @elem or description = @elem or objet = @elem;";
-            List<Paie> lesPaies = new List<Paie>();
-
-            try
-            {
-                this.maConnexion.Open();
-
-                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
-                uneCmde.CommandText = requete;//prepare
-
                 uneCmde.Parameters.AddWithValue("@elem", elem);
                 //on execute dans le reader
                 // creation d'un curseur de résultats
@@ -821,7 +840,7 @@ namespace Intranet
                 {
                     if (unReader.HasRows)
                     {
-                        if (unReader.Read())
+                        while (unReader.Read())
                         {
                             //instanciation d'un employe
                             Paie unePaie = new Paie(
@@ -832,6 +851,7 @@ namespace Intranet
                             unReader.GetString(4),
                             unReader.GetString(5)
                             );
+                            lesPaies.Add(unePaie);
                         }
                     }
                 }
