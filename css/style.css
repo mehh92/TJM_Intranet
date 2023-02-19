@@ -480,3 +480,17 @@ font-size: 22px;
     color:#385B64;
     font-weight: 600;
 }
+
+/*planning*/
+
+.entete-planning
+{
+    display: flex;
+}
+
+.btn-planning {
+    display: flex;
+    width: 280px;
+    margin-left: 30px;
+    justify-content: space-around;
+}

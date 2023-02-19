@@ -81,11 +81,10 @@
     <Content Include="script\functions.js" />
     <Content Include="sql\tjm.sql" />
     <Content Include="tache.aspx" />
-    <Content Include="vue\vue_insert_absence.aspx" />
     <Content Include="vue\vue_modifier_profil.aspx" />
     <Content Include="vue\vue_insert_paie.aspx" />
-    <Content Include="vue\vue_insert_tache.aspx" />
-    <Content Include="vue\vue_les_absences.aspx" />
+    <Content Include="vue\vue_insert_tache_absence.aspx" />
+    <Content Include="vue\vue_les_tache_absences.aspx" />
     <Content Include="vue\vue_les_employes.aspx" />
     <Content Include="vue\vue_les_paies.aspx" />
     <Content Include="vue\vue_les_taches.aspx" />
