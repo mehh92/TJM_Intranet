@@ -65,9 +65,14 @@ namespace Intranet
             return unModele.SelectWhereAbsence(id_user);
         }
 
-        public static Absence SelectWhereAbsence(int id_user, string date_absence)
+        public static List<Absence> SelectWhereAllAbsence(int id_user)
         {
-            return SelectWhereAbsence(id_user, date_absence);
+            return unModele.SelectWhereAllAbsence(id_user);
+        }
+
+        public static List<Absence> SelectWhereAbsenceMois(int id_user, string date_absence)
+        {
+            return unModele.SelectWhereAbsenceMois(id_user, date_absence);
         }
 
         //TACHE
@@ -87,14 +92,14 @@ namespace Intranet
             unModele.DeleteTache(id_tache);
         }
 
-        public static Tache SelectWhereTache(int id_user)
+        public static List<Tache> SelectWhereTacheJour(int id_user)
         {
-            return unModele.SelectWhereTache(id_user);
+            return unModele.SelectWhereTacheJour(id_user);
         }
 
-        public static Tache SelectWhereTache(int id_user, string date_tache)
+        public static List<Tache> SelectWhereTacheDate(int id_user, string date_tache)
         {
-            return SelectWhereTache(id_user, date_tache);
+            return unModele.SelectWhereTacheDate(id_user, date_tache);
         }
 
         //PAIE

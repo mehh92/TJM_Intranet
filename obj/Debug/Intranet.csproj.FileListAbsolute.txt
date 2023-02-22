@@ -28,3 +28,13 @@ C:\Users\Mehdi\source\repos\Intranet\obj\Debug\Intranet.csproj.CoreCompileInputs
 C:\Users\Mehdi\source\repos\Intranet\obj\Debug\Intranet.csproj.CopyComplete
 C:\Users\Mehdi\source\repos\Intranet\obj\Debug\Depannage.dll
 C:\Users\Mehdi\source\repos\Intranet\obj\Debug\Depannage.pdb
+C:\Users\btari\source\repos\TJM_Intranet\bin\employe.aspx
+C:\Users\btari\source\repos\TJM_Intranet\bin\Depannage.dll.config
+C:\Users\btari\source\repos\TJM_Intranet\bin\Depannage.dll
+C:\Users\btari\source\repos\TJM_Intranet\bin\Depannage.pdb
+C:\Users\btari\source\repos\TJM_Intranet\bin\MySql.Data.dll
+C:\Users\btari\source\repos\TJM_Intranet\obj\Debug\Intranet.csproj.AssemblyReference.cache
+C:\Users\btari\source\repos\TJM_Intranet\obj\Debug\Intranet.csproj.CoreCompileInputs.cache
+C:\Users\btari\source\repos\TJM_Intranet\obj\Debug\Intranet.csproj.CopyComplete
+C:\Users\btari\source\repos\TJM_Intranet\obj\Debug\Depannage.dll
+C:\Users\btari\source\repos\TJM_Intranet\obj\Debug\Depannage.pdb

@@ -494,3 +494,36 @@ font-size: 22px;
     margin-left: 30px;
     justify-content: space-around;
 }
+
+.btn-formulaire-enregistrer {
+    margin-top: 20px;
+}
+
+.div-hide-absence {
+    width: 50%;
+    margin-left: 5%;
+    margin-bottom: 80px;
+}
+
+.flex-container {
+    display: flex;
+    width: 70%;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
+
+.search
+{
+    width: 100%;
+    margin-left: inherit;
+    margin-bottom: 20px;
+}
+
+.card-uneTache
+{
+    margin-bottom: 10px;
+}
+
+.card-uneAbsence {
+    margin-bottom: 10px;
+}

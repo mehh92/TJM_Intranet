@@ -20,7 +20,7 @@ namespace Intranet
             this.bdd = bdd;
             this.user = user;
             this.mdp = mdp;
-            string url = "SslMode=None;  SERVER=" + this.serveur + "; Port=3306; Database=" + this.bdd + "; User ID=" + this.user + "; Password=" + this.mdp;
+            string url = "SslMode=None;  SERVER=" + this.serveur + "; Database=" + this.bdd + "; User ID=" + this.user + "; Password=" + this.mdp;
 
             try
             {
@@ -421,9 +421,9 @@ namespace Intranet
         }
 
 
-        public Absence SelectWhereAbsence(int id_user)
+        public Absence SelectWhereAbsence(int id_absence)
         {
-            string requete = "select * from absence where id_user = @id_user;";
+            string requete = "select * from absence where id_absence = @id_absence;";
             Absence uneAbsence = null;
             try
             {
@@ -432,7 +432,7 @@ namespace Intranet
                 MySqlCommand uneCmde = this.maConnexion.CreateCommand();
                 uneCmde.CommandText = requete;//prepare
 
-                uneCmde.Parameters.AddWithValue("@id_absence", id_user);
+                uneCmde.Parameters.AddWithValue("@id_absence", id_absence);
                 //on execute dans le reader
                 // creation d'un curseur de résultats
                 DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
@@ -469,19 +469,25 @@ namespace Intranet
             return uneAbsence;
         }
 
-        public Absence SelectWhereAbsence(int id_user, string date_absence)
+        public List<Absence> SelectWhereAllAbsence(int id_user)
         {
-            string requete = "select * from absence where id_user = @id_user and month(date_absence) = @date_absence;";
-            Absence uneAbsence = null;
+            string requete = "select * from absence where id_user = @id_user order by date_absence DESC;";
+            List<Absence> lesAbsences = new List<Absence>();
+            MySqlCommand uneCmde = null;
             try
             {
                 this.maConnexion.Open();
 
-                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde = this.maConnexion.CreateCommand();
                 uneCmde.CommandText = requete;//prepare
 
-                uneCmde.Parameters.AddWithValue("@id_absence", id_user);
-                uneCmde.Parameters.AddWithValue("@date_absence", date_absence);
+                uneCmde.Parameters.AddWithValue("@id_user", id_user);
+
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
                 //on execute dans le reader
                 // creation d'un curseur de résultats
                 DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
@@ -489,33 +495,99 @@ namespace Intranet
                 {
                     if (unReader.HasRows)
                     {
-                        if (unReader.Read())
+                        while (unReader.Read())
                         {
                             //instanciation d'un employe
-                            uneAbsence = new Absence(
+                            Absence uneAbsence = new Absence(
                             unReader.GetInt32(0),
                             unReader.GetInt32(1),
                             unReader.GetString(2),
                             unReader.GetString(3)
                             );
+                            lesAbsences.Add(uneAbsence);
                         }
                     }
                 }
                 catch (Exception exp)
                 {
-                    Console.WriteLine("Erreur de requete : " + requete);
-                    Console.WriteLine(exp.Message);
+                    Debug.WriteLine(uneCmde.CommandText);
+                    foreach (MySqlParameter unParam in uneCmde.Parameters)
+                    {
+                        Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                    }
+                    Debug.WriteLine("Erreur de requete :" + requete);
+                    Debug.WriteLine(exp.Message);
                 }
 
                 this.maConnexion.Close();
             }
             catch (Exception exp)
             {
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+                Debug.WriteLine("Erreur de requete :" + requete);
+                Debug.WriteLine(exp.Message);
+
+            }
+            return lesAbsences;
+        }
+
+        public List<Absence> SelectWhereAbsenceMois(int id_user, string date_absence)
+        {
+            Debug.WriteLine("titi");
+            string requete = "select * from absence where id_user = @id_user and month(date_absence) = @date_absence;";
+            List<Absence> lesAbsences = new List<Absence>();
+            try
+            {
+                Debug.WriteLine("tutu");
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;//prepare
+
+                uneCmde.Parameters.AddWithValue("@id_user", id_user);
+                uneCmde.Parameters.AddWithValue("@date_absence", date_absence);
+                //on execute dans le reader
+                // creation d'un curseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
+                try
+                {
+                    Debug.WriteLine("ttoutou");
+                    if (unReader.HasRows)
+                    {
+                        while (unReader.Read())
+                        {
+                            //instanciation d'un employe
+                            Absence uneAbsence = new Absence(
+                            unReader.GetInt32(0),
+                            unReader.GetInt32(1),
+                            unReader.GetString(2),
+                            unReader.GetString(3)
+                            );
+                            lesAbsences.Add(uneAbsence);
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Debug.WriteLine("toto");
+                    Debug.WriteLine("Erreur de requete : " + requete);
+                    Debug.WriteLine(exp.Message);
+                }
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Debug.WriteLine("tata");
                 Console.WriteLine("Erreur de requete : " + requete);
                 Console.WriteLine(exp.Message);
 
             }
-            return uneAbsence;
+            return lesAbsences;
         }
 
 
@@ -600,10 +672,10 @@ namespace Intranet
             }
         }
 
-        public Tache SelectWhereTache(int id_user)
+        public List<Tache> SelectWhereTacheJour(int id_user)
         {
             string requete = "select * from tache where id_user = @id_user and date_tache = curdate();";
-            Tache uneTache = null;
+            List<Tache> lesTaches = new List<Tache>();
             try
             {
                 this.maConnexion.Open();
@@ -619,10 +691,10 @@ namespace Intranet
                 {
                     if (unReader.HasRows)
                     {
-                        if (unReader.Read())
+                        while (unReader.Read())
                         {
                             //instanciation d'un employe
-                            uneTache = new Tache(
+                            Tache uneTache = new Tache(
                             unReader.GetInt32(0),
                             unReader.GetInt32(1),
                             unReader.GetString(2),
@@ -630,6 +702,7 @@ namespace Intranet
                             unReader.GetString(4),
                             unReader.GetString(5)
                             );
+                            lesTaches.Add(uneTache);
                         }
                     }
                 }
@@ -647,13 +720,14 @@ namespace Intranet
                 Console.WriteLine(exp.Message);
 
             }
-            return uneTache;
+            return lesTaches;
         }
 
-        public Tache SelectWhereTache(int id_user, string date_tache)
+        public List<Tache> SelectWhereTacheDate(int id_user, string date_tache)
         {
             string requete = "select * from tache where id_user = @id_user and date_tache = @date_tache;";
-            Tache uneTache = null;
+            List<Tache> lesTaches = new List<Tache>();
+            Debug.WriteLine(date_tache);
             try
             {
                 this.maConnexion.Open();
@@ -661,19 +735,25 @@ namespace Intranet
                 MySqlCommand uneCmde = this.maConnexion.CreateCommand();
                 uneCmde.CommandText = requete;//prepare
 
-                uneCmde.Parameters.AddWithValue("@id_absence", id_user);
+                uneCmde.Parameters.AddWithValue("@id_user", id_user);
                 uneCmde.Parameters.AddWithValue("@date_tache", date_tache);
                 //on execute dans le reader
                 // creation d'un curseur de résultats
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+
                 DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
                 try
                 {
                     if (unReader.HasRows)
                     {
-                        if (unReader.Read())
+                        while (unReader.Read())
                         {
                             //instanciation d'un employe
-                            uneTache = new Tache(
+                            Tache uneTache = new Tache(
                             unReader.GetInt32(0),
                             unReader.GetInt32(1),
                             unReader.GetString(2),
@@ -681,24 +761,25 @@ namespace Intranet
                             unReader.GetString(4),
                             unReader.GetString(5)
                             );
+                            lesTaches.Add(uneTache);
                         }
                     }
                 }
                 catch (Exception exp)
                 {
-                    Console.WriteLine("Erreur de requete : " + requete);
-                    Console.WriteLine(exp.Message);
+                    Debug.WriteLine("Erreur de requete : " + requete);
+                    Debug.WriteLine(exp.Message);
                 }
 
                 this.maConnexion.Close();
             }
             catch (Exception exp)
             {
-                Console.WriteLine("Erreur de requete : " + requete);
-                Console.WriteLine(exp.Message);
+                Debug.WriteLine("Erreur de requete : " + requete);
+                Debug.WriteLine(exp.Message);
 
             }
-            return uneTache;
+            return lesTaches;
         }
 
         // PAIE
