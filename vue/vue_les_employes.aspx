@@ -30,8 +30,8 @@
         chaine += "<td>" + unEmploye.Role + "</td>";
 
         chaine += "<td>";
-        chaine += "<a href='Default.aspx?page=2&action=sup&idemploye=" + unEmploye.Id_user + "'>Supprimer</a>";
-        chaine += "<a href='Default.aspx?page=2&action=edit&idemploye=" + unEmploye.Id_user + "'>Modifier</a>";
+        chaine += "<a href='Default.aspx?page=4&action=sup&idemploye=" + unEmploye.Id_user + "'>Supprimer</a>";
+        chaine += "<a href='Default.aspx?page=4&action=edit&idemploye=" + unEmploye.Id_user + "'>Modifier</a>";
 
         chaine += "</td>";
 

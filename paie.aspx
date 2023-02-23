@@ -7,7 +7,7 @@
     int idemployeP = (int) Session["id_user"];
 
     string elem = "";
-    List<Intranet.Paie> lesPaies = null;
+    List<Intranet.Paie> lesPaies2 = null;
 
     if (Request.Form["rechercherPaie"] != null)
     {

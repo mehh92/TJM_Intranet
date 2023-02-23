@@ -260,6 +260,12 @@ from employe e, tache t
 where e.id_user = t.id_user
 );
 
+create or replace view VuelesPaies as (
+select e.id_user, e.nom, e.prenom, e.role, p.montant, p.date_versement, p.description, p.objet
+from employe e, paie p
+where e.id_user = p.id_user
+);
+
 /*TRIGGERS*/
 
 drop trigger if exists InsertUtilisateurToCandidatOrClient;
@@ -419,6 +425,8 @@ END $
 delimiter ;
 
 
+set foreign_key_checks=0;
+
 /*INSERT*/
 
 insert into utilisateur values (null,'chiche','mehdi','mehh92350@gmail.com','0650409399','123','client');
@@ -426,3 +434,7 @@ insert into utilisateur values (null,'chiche','mehdi','mehh92350@gmail.com','065
 call insertEmploye ('jp', 'li', 'jp', 'sqd', 'qdssq', 'test', 'manager');
 
 call insertEmploye ('test', 'test', 'test', 'test', '123', '123', 'mecanicien');
+
+call insertPaie (1, 1000, "2022-01-01", "qsd", "eaz");
+
+call insertTache(2, "2021-03-05", "15:30", "paris", "panne");

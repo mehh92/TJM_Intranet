@@ -92,6 +92,16 @@ namespace Intranet
             unModele.DeleteTache(id_tache);
         }
 
+        public static List<Tache> SelectAllTaches()
+        {
+            return unModele.SelectAllTaches();
+        }
+
+        public static Tache SelectWhereTache2(int id_tache)
+        {
+            return unModele.SelectWhereTache2(id_tache);
+        }
+
         public static List<Tache> SelectWhereTacheJour(int id_user)
         {
             return unModele.SelectWhereTacheJour(id_user);
@@ -109,9 +119,24 @@ namespace Intranet
             unModele.InsertPaie(unePaie);
         }
 
+        public static void UpdatePaie(Paie unePaie)
+        {
+            unModele.UpdatePaie(unePaie);
+        }
+
         public static void DeletePaie(int id_paie)
         {
             unModele.DeletePaie(id_paie);
+        }
+
+        public static List<Paie> SelectAllPaies()
+        {
+            return unModele.SelectAllPaies();
+        }
+
+        public static Paie SelectWherePaie2(int id_paie)
+        {
+            return unModele.SelectWherePaie2(id_paie);
         }
 
         public static List<Paie> SelectWherePaie(int id_user)
@@ -122,6 +147,16 @@ namespace Intranet
         public static List<Paie> SelectWherePaie(int id_user, string elem)
         {
             return unModele.SelectWherePaie(id_user, elem);
+        }
+
+        public static List<Vpaies> SelectAllVpaies()
+        {
+            return unModele.SelectAllVpaies();
+        }
+
+        public static Vpaies SelectWhereVpaies(string elem)
+        {
+            return unModele.SelectWhereVpaies(elem);
         }
 
         //VABSENCES
@@ -142,9 +177,9 @@ namespace Intranet
             return unModele.SelectAllVtaches();
         }
 
-        public static Vtaches SelectWhereVtaches(string elem)
+        public static List<Vtaches> SelectWhereVtaches(string nom)
         {
-            return unModele.SelectWhereVtaches(elem);
+            return unModele.SelectWhereVtaches(nom);
         }
     }
 
