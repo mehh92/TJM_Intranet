@@ -260,6 +260,12 @@ from employe e, tache t
 where e.id_user = t.id_user
 );
 
+create or replace view VuelesPaies as (
+select e.id_user, e.nom, e.prenom, e.role, p.montant, p.date_versement, p.description, p.objet
+from employe e, paie p
+where e.id_user = p.id_user
+);
+
 /*TRIGGERS*/
 
 drop trigger if exists InsertUtilisateurToCandidatOrClient;

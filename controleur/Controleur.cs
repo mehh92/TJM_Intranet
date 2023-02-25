@@ -45,6 +45,12 @@ namespace Intranet
         }
 
 
+        public static List<Employe> SelectWhereAllEmploye(string elem)
+        {
+            return unModele.SelectWhereAllEmploye(elem);
+        }
+
+
         //ABSENCE
         public static void InsertAbsence(Absence uneAbsence)
         {
@@ -92,6 +98,11 @@ namespace Intranet
             unModele.DeleteTache(id_tache);
         }
 
+        public static Tache SelectWhereTache2(int idtache)
+        {
+            return unModele.SelectWhereTache2(idtache);
+        }
+
         public static List<Tache> SelectWhereTacheJour(int id_user)
         {
             return unModele.SelectWhereTacheJour(id_user);
@@ -109,9 +120,19 @@ namespace Intranet
             unModele.InsertPaie(unePaie);
         }
 
+        public static void UpdatePaie(Paie unePaie)
+        {
+            unModele.UpdatePaie(unePaie);
+        }
+
         public static void DeletePaie(int id_paie)
         {
             unModele.DeletePaie(id_paie);
+        }
+
+        public static Paie SelectWherePaieGestion(int idpaie)
+        {
+            return unModele.SelectWherePaieGestion(idpaie);
         }
 
         public static List<Paie> SelectWherePaie(int id_user)
@@ -131,9 +152,9 @@ namespace Intranet
             return unModele.SelectAllVabsences();
         }
 
-        public static Vabsences SelectWhereVabsences(string elem)
+        public static List<Vabsences> SelectWhereAllVabsences(string elem)
         {
-            return unModele.SelectWhereVabsences(elem);
+            return unModele.SelectWhereAllVabsences(elem);
         }
 
         //VTACHES
@@ -142,9 +163,20 @@ namespace Intranet
             return unModele.SelectAllVtaches();
         }
 
-        public static Vtaches SelectWhereVtaches(string elem)
+        public static List<Vtaches> SelectWhereAllVtaches(string elem)
         {
-            return unModele.SelectWhereVtaches(elem);
+            return unModele.SelectWhereAllVtaches(elem);
+        }
+
+        //VPAIES
+        public static List<Vpaies> SelectAllVpaies()
+        {
+            return unModele.SelectAllVpaies();
+        }
+
+        public static List<Vpaies> SelectWhereAllVpaies(string elem)
+        {
+            return unModele.SelectWhereAllVpaies(elem);
         }
     }
 

@@ -1,6 +1,6 @@
 <div class="div-hide-absence">
 
-<h4 class="titre-insert-offre">Enregistrer une absence </h4>
+<h4 class="titre-insert-offre"> <%=(lAbsence!= null) ? "Modifier l'absence" : "Enregistrer une absence"%></h4>
 
 <form method="post" class="form-horizontal border border-insert-offre">
 

@@ -527,3 +527,14 @@ font-size: 22px;
 .card-uneAbsence {
     margin-bottom: 10px;
 }
+
+.a-modifier {
+    cursor: pointer;
+    color: #FF745C;
+    text-decoration: none;
+}
+
+.a-modifier:hover
+{
+    color: #FF745C;
+}

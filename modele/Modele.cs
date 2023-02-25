@@ -289,10 +289,10 @@ namespace Intranet
             return unEmploye;
         }
 
-        public Employe SelectWhereEmploye(string nom)
+        public List<Employe> SelectWhereAllEmploye(string elem)
         {
-            string requete = "select * from employe where nom = @nom;";
-            Employe unEmploye = null;
+            string requete = "select * from employe where nom = @elem;";
+            List<Employe> lesEmployes = new List<Employe>();
             try
             {
                 this.maConnexion.Open();
@@ -308,10 +308,10 @@ namespace Intranet
                 {
                     if (unReader.HasRows)
                     {
-                        if (unReader.Read())
+                        while (unReader.Read())
                         {
                             //instanciation d'un employe
-                            unEmploye = new Employe(
+                            Employe unEmploye = new Employe(
                             unReader.GetInt32(0),
                             unReader.GetString(1),
                             unReader.GetString(2),
@@ -321,6 +321,8 @@ namespace Intranet
                             unReader.GetString(6),
                             unReader.GetString(7)
                             );
+
+                            lesEmployes.Add(unEmploye);
                         }
                     }
                 }
@@ -338,9 +340,8 @@ namespace Intranet
                 Console.WriteLine(exp.Message);
 
             }
-            return unEmploye;
+            return lesEmployes;
         }
-
 
 
 
@@ -371,7 +372,7 @@ namespace Intranet
 
         public void UpdateAbsence(Absence uneAbsence)
         {
-            string requete = "call UpdateAbsence(@id_absence, @id_user, @date_absence, type_absence);";
+            string requete = "call updateAbsence (@id_absence, @id_user, @date_absence, @type_absence);";
             MySqlCommand uneCmde = null;
             try
             {
@@ -397,6 +398,7 @@ namespace Intranet
                 Debug.WriteLine(exp.Message);
             }
         }
+
 
         public void DeleteAbsence(int id_absence)
         {
@@ -672,6 +674,56 @@ namespace Intranet
             }
         }
 
+        public Tache SelectWhereTache2(int id_tache)
+        {
+            string requete = "select * from tache where id_tache = @id_tache;";
+            Tache uneTache = null;
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;//prepare
+
+                uneCmde.Parameters.AddWithValue("@id_tache", id_tache);
+                //on execute dans le reader
+                // creation d'un curseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        if (unReader.Read())
+                        {
+                            //instanciation d'un employe
+                            uneTache = new Tache(
+                            unReader.GetInt32(0),
+                            unReader.GetInt32(1),
+                            unReader.GetString(2),
+                            unReader.GetString(3),
+                            unReader.GetString(4),
+                            unReader.GetString(5)
+                            );
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine("Erreur de requete : " + requete);
+                    Console.WriteLine(exp.Message);
+                }
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+
+            }
+            return uneTache;
+        }
+
         public List<Tache> SelectWhereTacheJour(int id_user)
         {
             string requete = "select * from tache where id_user = @id_user and date_tache = curdate();";
@@ -810,6 +862,37 @@ namespace Intranet
             }
         }
 
+        public void UpdatePaie(Paie unePaie)
+        {
+            string requete = "call updatePaie(@id_paie, @id_user, @montant, @date_versement, @description, @objet);";
+            MySqlCommand uneCmde = null;
+            try
+            {
+                this.maConnexion.Open();
+                uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                //les correspondances entre variables MYSQL ET C#
+                uneCmde.Parameters.AddWithValue("@id_paie", unePaie.Id_paie);
+                uneCmde.Parameters.AddWithValue("@id_user", unePaie.Id_user;
+                uneCmde.Parameters.AddWithValue("@montant", unePaie.Montant);
+                uneCmde.Parameters.AddWithValue("@date_versement", unePaie.Date_versement);
+                uneCmde.Parameters.AddWithValue("@description", unePaie.Description);
+                uneCmde.Parameters.AddWithValue("@objet", unePaie.Objet);
+                uneCmde.ExecuteNonQuery();
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Debug.WriteLine(uneCmde.CommandText);
+                foreach (MySqlParameter unParam in uneCmde.Parameters)
+                {
+                    Debug.WriteLine(unParam.ParameterName + ": " + unParam.Value);
+                }
+                Debug.WriteLine("Erreur de requete :" + requete);
+                Debug.WriteLine(exp.Message);
+            }
+        }
+
         public void DeletePaie(int id_paie)
         {
             string requete = "call deletePaie (@id_paie);";
@@ -830,6 +913,56 @@ namespace Intranet
                 Console.WriteLine("Erreur de requete : " + requete);
                 Console.WriteLine(exp.Message);
             }
+        }
+
+        public Paie SelectWherePaieGestion(int idpaie)
+        {
+            string requete = "select * from paie where id_paie = @idpaie;";
+            Paie unePaie = null;
+            MySqlCommand uneCmde = null;
+            try
+            {
+                this.maConnexion.Open();
+                uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                uneCmde.Parameters.AddWithValue("@idpaie", idpaie);
+
+                //creation d'un cruseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader();
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        if (unReader.Read())
+                        {
+
+                            //instanciation d'un employe
+                            unePaie = new Paie(
+                            unReader.GetInt32(0),
+                            unReader.GetInt32(1),
+                            unReader.GetFloat(2),
+                            unReader.GetString(3),
+                            unReader.GetString(4),
+                            unReader.GetString(5)
+                            );
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine("Erreur de requete : " + requete);
+                    Console.WriteLine(exp.Message);
+                }
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+
+            }
+            return unePaie;
         }
 
         public List<Paie> SelectWherePaie(int id_user)
@@ -1005,10 +1138,10 @@ namespace Intranet
             return lesVabsences;
         }
 
-        public Vabsences SelectWhereVabsences(string elem)
+        public List<Vabsences> SelectWhereAllVabsences(string elem)
         {
-            string requete = "select * from vuelesabsences where nom = @elem or prenom = @elem or role = @elem or date_absence = @elem or type_absence = @elem;";
-            Vabsences uneVabsences = null;
+            string requete = "select * from vuelesabsences where nom = @elem;";
+            List<Vabsences> lesVabsences = new List<Vabsences>();
             try
             {
                 this.maConnexion.Open();
@@ -1024,10 +1157,10 @@ namespace Intranet
                 {
                     if (unReader.HasRows)
                     {
-                        if (unReader.Read())
+                        while (unReader.Read())
                         {
                             //instanciation d'un employe
-                            uneVabsences = new Vabsences(
+                           Vabsences uneVabsences = new Vabsences(
                             unReader.GetInt32(0),
                             unReader.GetString(1),
                             unReader.GetString(2),
@@ -1035,6 +1168,8 @@ namespace Intranet
                             unReader.GetString(4),
                             unReader.GetString(5)
                             );
+
+                            lesVabsences.Add(uneVabsences);
                         }
                     }
                 }
@@ -1052,7 +1187,7 @@ namespace Intranet
                 Console.WriteLine(exp.Message);
 
             }
-            return uneVabsences;
+            return lesVabsences;
         }
 
         // VTACHES
@@ -1109,10 +1244,10 @@ namespace Intranet
             return lesVtaches;
         }
 
-        public Vtaches SelectWhereVtaches(string elem)
+        public List<Vtaches> SelectWhereAllVtaches(string elem)
         {
-            string requete = "select * from vuelestaches where nom = @elem or prenom = @elem or role = @elem or date_heure_tache = @elem or lieu = @elem or motif = @elem;";
-            Vtaches uneVtaches = null;
+            string requete = "select * from vuelestaches where nom = @elem;";
+            List<Vtaches> lesVtaches = new List<Vtaches>();
             try
             {
                 this.maConnexion.Open();
@@ -1128,10 +1263,10 @@ namespace Intranet
                 {
                     if (unReader.HasRows)
                     {
-                        if (unReader.Read())
+                        while (unReader.Read())
                         {
                             //instanciation d'un employe
-                            uneVtaches = new Vtaches(
+                            Vtaches uneVtaches = new Vtaches(
                             unReader.GetInt32(0),
                             unReader.GetString(1),
                             unReader.GetString(2),
@@ -1141,6 +1276,8 @@ namespace Intranet
                             unReader.GetString(6),
                             unReader.GetString(7)
                             );
+
+                            lesVtaches.Add(uneVtaches);
                         }
                     }
                 }
@@ -1158,7 +1295,114 @@ namespace Intranet
                 Console.WriteLine(exp.Message);
 
             }
-            return uneVtaches;
+            return lesVtaches;
+        }
+
+
+        // VPAIES
+
+        public List<Vpaies> SelectAllVpaies()
+        {
+            string requete = "select * from Vuelespaies;";
+            List<Vpaies> lesVpaies = new List<Vpaies>();
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                // creation d'un curseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader();
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        while (unReader.Read())
+                        {
+                            //instanciation d'un employe
+                            Vpaies uneVpaies = new Vpaies(
+                                unReader.GetInt32(0),
+                                unReader.GetString(1),
+                                unReader.GetString(2),
+                                unReader.GetString(3),
+                                unReader.GetFloat(4),
+                                unReader.GetString(5),
+                                unReader.GetString(6),
+                                unReader.GetString(7)
+                                );
+
+                            //ajouter dans la liste
+                            lesVpaies.Add(uneVpaies);
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine("Erreur de requete : " + requete);
+                    Console.WriteLine(exp.Message);
+                }
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+
+            }
+            return lesVpaies;
+        }
+
+        public List<Vpaies> SelectWhereAllVpaies(string elem)
+        {
+            string requete = "select * from Vuelespaies where nom = @elem;";
+            List<Vpaies> lesVpaies = new List<Vpaies>();
+            try
+            {
+                this.maConnexion.Open();
+
+                MySqlCommand uneCmde = this.maConnexion.CreateCommand();
+                uneCmde.CommandText = requete;
+                // creation d'un curseur de résultats
+                DbDataReader unReader = uneCmde.ExecuteReader();
+                try
+                {
+                    if (unReader.HasRows)
+                    {
+                        while (unReader.Read())
+                        {
+                            //instanciation d'un employe
+                            Vpaies uneVpaies = new Vpaies(
+                                unReader.GetInt32(0),
+                                unReader.GetString(1),
+                                unReader.GetString(2),
+                                unReader.GetString(3),
+                                unReader.GetFloat(4),
+                                unReader.GetString(5),
+                                unReader.GetString(6),
+                                unReader.GetString(7)
+                                );
+
+                            //ajouter dans la liste
+                            lesVpaies.Add(uneVpaies);
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine("Erreur de requete : " + requete);
+                    Console.WriteLine(exp.Message);
+                }
+
+                this.maConnexion.Close();
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Erreur de requete : " + requete);
+                Console.WriteLine(exp.Message);
+
+            }
+            return lesVpaies;
         }
     }
 }
