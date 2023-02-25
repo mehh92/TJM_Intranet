@@ -50,7 +50,7 @@
         int idpaie = int.Parse(Request["idpaie"]);
         switch(action)
         {
-            Case "edit" : laPaie = Intranet.Controleur.SelectWherePaieGestion(idpaie);
+            case "edit" : laPaie = Intranet.Controleur.SelectWherePaieGestion(idpaie);
             break;
 
             case "sup" : Intranet.Controleur.DeletePaie(idpaie);
