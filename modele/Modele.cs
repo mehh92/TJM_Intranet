@@ -289,9 +289,9 @@ namespace Intranet
             return unEmploye;
         }
 
-        public List<Employe> SelectWhereAllEmploye(string elem)
+        public List<Employe> SelectWhereAllEmploye(string nom)
         {
-            string requete = "select * from employe where nom = @elem;";
+            string requete = "select * from employe where nom = @nom;";
             List<Employe> lesEmployes = new List<Employe>();
             try
             {
@@ -674,7 +674,7 @@ namespace Intranet
             }
         }
 
-        public Tache SelectWhereTache2(int id_tache)
+        public Tache SelectWhereTacheGestion(int id_tache)
         {
             string requete = "select * from tache where id_tache = @id_tache;";
             Tache uneTache = null;
@@ -847,10 +847,10 @@ namespace Intranet
                 uneCmde.CommandText = requete;
                 //les correspondances entre variables MYSQL ET C#
                 uneCmde.Parameters.AddWithValue("@id_user", unePaie.Id_user);
-                uneCmde.Parameters.AddWithValue("@date_absence", unePaie.Montant);
-                uneCmde.Parameters.AddWithValue("@type_absence", unePaie.Date_versement);
-                uneCmde.Parameters.AddWithValue("@type_absence", unePaie.Description);
-                uneCmde.Parameters.AddWithValue("@type_absence", unePaie.Objet);
+                uneCmde.Parameters.AddWithValue("@montant", unePaie.Montant);
+                uneCmde.Parameters.AddWithValue("@date_versement", unePaie.Date_versement);
+                uneCmde.Parameters.AddWithValue("@description", unePaie.Description);
+                uneCmde.Parameters.AddWithValue("@objet", unePaie.Objet);
 
                 uneCmde.ExecuteNonQuery();
                 this.maConnexion.Close();
@@ -873,7 +873,7 @@ namespace Intranet
                 uneCmde.CommandText = requete;
                 //les correspondances entre variables MYSQL ET C#
                 uneCmde.Parameters.AddWithValue("@id_paie", unePaie.Id_paie);
-                uneCmde.Parameters.AddWithValue("@id_user", unePaie.Id_user;
+                uneCmde.Parameters.AddWithValue("@id_user", unePaie.Id_user);
                 uneCmde.Parameters.AddWithValue("@montant", unePaie.Montant);
                 uneCmde.Parameters.AddWithValue("@date_versement", unePaie.Date_versement);
                 uneCmde.Parameters.AddWithValue("@description", unePaie.Description);
@@ -1112,8 +1112,9 @@ namespace Intranet
                                 unReader.GetString(1),
                                 unReader.GetString(2),
                                 unReader.GetString(3),
-                                unReader.GetString(4),
-                                unReader.GetString(5)
+                                unReader.GetInt32(4),
+                                unReader.GetString(5),
+                                unReader.GetString(6)
                                 );
 
                             //ajouter dans la liste
@@ -1165,8 +1166,9 @@ namespace Intranet
                             unReader.GetString(1),
                             unReader.GetString(2),
                             unReader.GetString(3),
-                            unReader.GetString(4),
-                            unReader.GetString(5)
+                            unReader.GetInt32(4),
+                            unReader.GetString(5),
+                            unReader.GetString(6)
                             );
 
                             lesVabsences.Add(uneVabsences);
@@ -1216,10 +1218,11 @@ namespace Intranet
                                 unReader.GetString(1),
                                 unReader.GetString(2),
                                 unReader.GetString(3),
-                                unReader.GetString(4),
+                                unReader.GetInt32(4),
                                 unReader.GetString(5),
                                 unReader.GetString(6),
-                                unReader.GetString(7)
+                                unReader.GetString(7),
+                                unReader.GetString(8)
                                 );
 
                             //ajouter dans la liste
@@ -1271,10 +1274,11 @@ namespace Intranet
                             unReader.GetString(1),
                             unReader.GetString(2),
                             unReader.GetString(3),
-                            unReader.GetString(4),
+                            unReader.GetInt32(4),
                             unReader.GetString(5),
                             unReader.GetString(6),
-                            unReader.GetString(7)
+                            unReader.GetString(7),
+                            unReader.GetString(8)
                             );
 
                             lesVtaches.Add(uneVtaches);
@@ -1325,10 +1329,11 @@ namespace Intranet
                                 unReader.GetString(1),
                                 unReader.GetString(2),
                                 unReader.GetString(3),
-                                unReader.GetFloat(4),
-                                unReader.GetString(5),
+                                unReader.GetInt32(4),
+                                unReader.GetFloat(5),
                                 unReader.GetString(6),
-                                unReader.GetString(7)
+                                unReader.GetString(7),
+                                unReader.GetString(8)
                                 );
 
                             //ajouter dans la liste
@@ -1363,8 +1368,11 @@ namespace Intranet
 
                 MySqlCommand uneCmde = this.maConnexion.CreateCommand();
                 uneCmde.CommandText = requete;
+
+                uneCmde.Parameters.AddWithValue("@elem", elem);
                 // creation d'un curseur de résultats
                 DbDataReader unReader = uneCmde.ExecuteReader();
+
                 try
                 {
                     if (unReader.HasRows)
@@ -1377,10 +1385,11 @@ namespace Intranet
                                 unReader.GetString(1),
                                 unReader.GetString(2),
                                 unReader.GetString(3),
-                                unReader.GetFloat(4),
-                                unReader.GetString(5),
+                                unReader.GetInt32(4),
+                                unReader.GetFloat(5),
                                 unReader.GetString(6),
-                                unReader.GetString(7)
+                                unReader.GetString(7),
+                                unReader.GetString(8)
                                 );
 
                             //ajouter dans la liste

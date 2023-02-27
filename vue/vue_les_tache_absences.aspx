@@ -20,7 +20,7 @@
             <%  } %>
         </div>
         
-        </div>
+     </div>
 
      <div class="item-absence">
         <h4 class="titre-insert-offre"> Mes absences</h4>

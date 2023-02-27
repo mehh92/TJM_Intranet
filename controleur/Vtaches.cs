@@ -8,7 +8,7 @@ namespace Intranet
 {
     public class Vtaches
     {
-        private int id_user;
+        private int id_user, id_tache;
         private string nom, prenom, role, date_tache, heure_tache, lieu, motif;
         public Vtaches()
         {
@@ -16,30 +16,33 @@ namespace Intranet
             this.nom = "";
             this.prenom = "";
             this.role = "";
+            this.id_tache = 0;
             this.date_tache = "";
             this.heure_tache = "";
             this.lieu = "";
             this.motif = "";
         }
 
-        public Vtaches(int id_user, string nom, string prenom, string role, string date_tache, string heure_tache, string lieu, string motif)
+        public Vtaches(int id_user, string nom, string prenom, string role, int id_tache, string date_tache, string heure_tache, string lieu, string motif)
         {
             this.id_user = id_user;
             this.nom = nom;
             this.prenom = prenom;
             this.role = role;
+            this.id_tache = id_tache;
             this.date_tache = date_tache;
             this.heure_tache = heure_tache;
             this.lieu = lieu;
             this.motif = motif;
         }
 
-        public Vtaches(string nom, string prenom, string role, string date_tache, string heure_tache, string lieu, string motif)
+        public Vtaches(string nom, string prenom, string role, int id_tache, string date_tache, string heure_tache, string lieu, string motif)
         {
             this.id_user = 0;
             this.nom = nom;
             this.prenom = prenom;
             this.role = role;
+            this.id_tache = id_tache;
             this.date_tache = date_tache;
             this.heure_tache= heure_tache;
             this.lieu = lieu;
@@ -64,6 +67,11 @@ namespace Intranet
         public string Role
         {
             get => role; set => role = value;
+        }
+
+        public int Id_tache
+        {
+            get => id_tache; set => id_tache = value;
         }
 
         public string Date_tache

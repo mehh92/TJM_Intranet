@@ -84,7 +84,6 @@
     <Content Include="vue\vue_modifier_profil.aspx" />
     <Content Include="vue\vue_insert_absence.aspx" />
     <Content Include="vue\vue_les_tache_absences.aspx" />
-    <Content Include="vue\vue_les_employes.aspx" />
     <Content Include="vue\vue_les_paies.aspx" />
     <Content Include="Web.config" />
     <Content Include="Global.asax" />

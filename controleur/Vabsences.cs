@@ -8,7 +8,7 @@ namespace Intranet
 {
     public class Vabsences
     {
-        private int id_user;
+        private int id_user, id_absence;
         private string nom, prenom, role, date_absence, type_absence;
 
         public Vabsences()
@@ -17,26 +17,29 @@ namespace Intranet
             this.nom = "";
             this.prenom = "";
             this.role = "";
+            this.id_absence= 0;
             this.date_absence = "";
             this.type_absence = "";
         }
 
-        public Vabsences(int id_user, string nom, string prenom, string role, string date_absence, string type_absence)
+        public Vabsences(int id_user, string nom, string prenom, string role, int id_absence, string date_absence, string type_absence)
         {
             this.id_user = id_user;
             this.nom = nom;
             this.prenom = prenom;
             this.role = role;
+            this.id_absence= id_absence;
             this.date_absence = date_absence;
             this.type_absence = type_absence;
         }
 
-        public Vabsences(string nom, string prenom, string role, string date_absence, string type_absence)
+        public Vabsences(string nom, string prenom, string role, int id_absence, string date_absence, string type_absence)
         {
             this.id_user = 0;
             this.nom = nom;
             this.prenom = prenom;
             this.role = role;
+            this.id_absence= id_absence;
             this.date_absence = date_absence;
             this.type_absence = type_absence;
         }
@@ -59,6 +62,11 @@ namespace Intranet
         public string Role
         {
             get => role; set => role = value;
+        }
+
+        public int Id_absence
+        {
+            get => id_absence; set => id_absence = value;
         }
 
         public string Date_absence

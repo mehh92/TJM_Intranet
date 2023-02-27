@@ -98,9 +98,9 @@ namespace Intranet
             unModele.DeleteTache(id_tache);
         }
 
-        public static Tache SelectWhereTache2(int idtache)
+        public static Tache SelectWhereTacheGestion(int idtache)
         {
-            return unModele.SelectWhereTache2(idtache);
+            return unModele.SelectWhereTacheGestion(idtache);
         }
 
         public static List<Tache> SelectWhereTacheJour(int id_user)

@@ -249,19 +249,19 @@ where o.id_offre = c.id_offre
 );
 
 create or replace view VuelesAbsences as (
-select e.id_user, e.nom, e.prenom, e.role, a.date_absence, a.type_absence
+select e.id_user, e.nom, e.prenom, e.role, a.id_absence, a.date_absence, a.type_absence
 from employe e, absence a
 where e.id_user = a.id_user
 );
 
 create or replace view VuelesTaches as (
-select e.id_user, e.nom, e.prenom, e.role, t.date_tache, heure_tache, t.lieu, t.motif
+select e.id_user, e.nom, e.prenom, e.role, t.id_tache, t.date_tache, heure_tache, t.lieu, t.motif
 from employe e, tache t
 where e.id_user = t.id_user
 );
 
 create or replace view VuelesPaies as (
-select e.id_user, e.nom, e.prenom, e.role, p.montant, p.date_versement, p.description, p.objet
+select e.id_user, e.nom, e.prenom, e.role, p.id_paie, p.montant, p.date_versement, p.description, p.objet
 from employe e, paie p
 where e.id_user = p.id_user
 );
@@ -429,6 +429,22 @@ delimiter ;
 
 insert into utilisateur values (null,'chiche','mehdi','mehh92350@gmail.com','0650409399','123','client');
 
-call insertEmploye ('jp', 'li', 'jp', 'sqd', 'qdssq', 'test', 'manager');
+call insertEmploye ('chiche', 'mehdi', 'mehdi@gmail.com', '0650409399', '7 rue de saclay', '123', 'manager');
 
-call insertEmploye ('test', 'test', 'test', 'test', '123', '123', 'mecanicien');
+call insertEmploye ('benchabane', 'tarik', 'tarik@gmail.com', '0767346511', '2 Av de la division', '123', 'mecanicien');
+
+insert into paie values (null, 2, 1000, curdate(), "salaire", "Fevrier");
+insert into paie values (null, 2, 2000, "2023-01-10", "salaire", "Janvier");
+insert into paie values (null, 2, 5000, "2023-01-10", "prime", "Janvier");
+insert into paie values (null, 2, 2000, "2023-02-10", "prime", "Fevrier");
+
+insert into paie values (null, 3, 1000, curdate(), "salaire", "Fevrier");
+insert into paie values (null, 3, 2000, "2023-01-10", "salaire", "Janvier");
+insert into paie values (null, 3, 5000, "2023-01-10", "prime", "Janvier");
+insert into paie values (null, 3, 2000, "2023-02-10", "prime", "Fevrier");
+
+call insertTache(2, curdate(), "08:00", "Paris", "Rdv client");
+call insertTache(3, curdate(), "08:00", "Paris", "Rdv client");
+
+call insertAbsence(2, "2023-01-10", "conge paye");
+call insertAbsence(3, "2023-02-02", "maladie"); 

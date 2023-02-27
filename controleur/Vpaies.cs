@@ -8,7 +8,7 @@ namespace Intranet
 {
     public class Vpaies
     {
-        private int id_user;
+        private int id_user, id_paie;
         private float montant;
         private string nom, prenom, role, date_versement, description, objet;
 
@@ -18,30 +18,33 @@ namespace Intranet
             this.nom = "";
             this.prenom = "";
             this.role = "";
+            this.id_paie = 0;
             this.montant = 0;
             this.date_versement = "";
             this.description = "";
             this.objet = "";
         }
 
-        public Vpaies(int id_user, string nom, string prenom, string role, float montant, string date_versement, string description, string objet)
+        public Vpaies(int id_user, string nom, string prenom, string role, int id_paie, float montant, string date_versement, string description, string objet)
         {
             this.id_user = id_user;
             this.nom = nom;
             this.prenom = prenom;
             this.role = role;
+            this.id_paie = id_paie;
             this.montant = montant;
             this.date_versement = date_versement;
             this.description = description;
             this.objet = objet;
         }
 
-        public Vpaies(string nom, string prenom, string role, float montant, string date_versement, string description, string objet)
+        public Vpaies(string nom, string prenom, string role, int id_paie, float montant, string date_versement, string description, string objet)
         {
             this.id_user = 0;
             this.nom = nom;
             this.prenom = prenom;
             this.role = role;
+            this.id_paie = id_paie;
             this.montant = montant;
             this.date_versement = date_versement;
             this.description = description;
@@ -66,6 +69,11 @@ namespace Intranet
         public string Role
         {
             get => role; set => role = value;
+        }
+
+        public int Id_paie
+        {
+            get => id_paie; set => id_paie = value;
         }
 
         public float Montant

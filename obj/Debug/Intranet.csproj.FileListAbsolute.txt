@@ -38,3 +38,13 @@ C:\Users\btari\source\repos\TJM_Intranet\obj\Debug\Intranet.csproj.CoreCompileIn
 C:\Users\btari\source\repos\TJM_Intranet\obj\Debug\Intranet.csproj.CopyComplete
 C:\Users\btari\source\repos\TJM_Intranet\obj\Debug\Depannage.dll
 C:\Users\btari\source\repos\TJM_Intranet\obj\Debug\Depannage.pdb
+C:\Users\btari\source\repos\Intranet\obj\Debug\Intranet.csproj.AssemblyReference.cache
+C:\Users\btari\source\repos\Intranet\obj\Debug\Intranet.csproj.CoreCompileInputs.cache
+C:\Users\btari\source\repos\Intranet\obj\Debug\Depannage.dll
+C:\Users\btari\source\repos\Intranet\obj\Debug\Depannage.pdb
+C:\Users\btari\source\repos\Intranet\bin\employe.aspx
+C:\Users\btari\source\repos\Intranet\bin\Depannage.dll.config
+C:\Users\btari\source\repos\Intranet\bin\Depannage.dll
+C:\Users\btari\source\repos\Intranet\bin\Depannage.pdb
+C:\Users\btari\source\repos\Intranet\bin\MySql.Data.dll
+C:\Users\btari\source\repos\Intranet\obj\Debug\Intranet.csproj.CopyComplete
