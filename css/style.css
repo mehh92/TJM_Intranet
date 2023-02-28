@@ -610,3 +610,59 @@ font-size: 22px;
 {
     height: 300px;
 }
+
+.hide-lesgestions.active .item-lesemployes, .item-lespaies, .item-lestaches, .item-lesabsences {
+    width: 100%;
+}
+/* GESTION RH */
+.hide-gestion {
+    display: none;
+}
+
+.hide-gestion.active {
+    display: block;
+}
+
+.hide-lesgestions {
+    display: none;
+}
+
+.hide-lesgestions.active {
+    display: block;
+}
+
+
+/* GESTION ACTIVITE */
+.hide-tache {
+    display: none;
+}
+
+.hide-tache.active {
+    display: block;
+}
+
+.hide-lestachesabsences {
+    display: none;
+}
+
+.hide-lestachesabsences.active {
+    display: block;
+}
+
+/* GESTION PLANNING */
+
+.hide-absence {
+    display: none;
+}
+
+.hide-absence.active {
+    display: block;
+}
+
+.hide-lesabsences {
+    display: none;
+}
+
+.hide-lesabsences.active {
+    display: block;
+}

@@ -48,3 +48,13 @@ C:\Users\btari\source\repos\Intranet\bin\Depannage.dll
 C:\Users\btari\source\repos\Intranet\bin\Depannage.pdb
 C:\Users\btari\source\repos\Intranet\bin\MySql.Data.dll
 C:\Users\btari\source\repos\Intranet\obj\Debug\Intranet.csproj.CopyComplete
+C:\Users\zebez\Desktop\GIT\TJM_Intranet\bin\employe.aspx
+C:\Users\zebez\Desktop\GIT\TJM_Intranet\bin\Depannage.dll.config
+C:\Users\zebez\Desktop\GIT\TJM_Intranet\bin\Depannage.dll
+C:\Users\zebez\Desktop\GIT\TJM_Intranet\bin\Depannage.pdb
+C:\Users\zebez\Desktop\GIT\TJM_Intranet\bin\MySql.Data.dll
+C:\Users\zebez\Desktop\GIT\TJM_Intranet\obj\Debug\Intranet.csproj.AssemblyReference.cache
+C:\Users\zebez\Desktop\GIT\TJM_Intranet\obj\Debug\Intranet.csproj.CoreCompileInputs.cache
+C:\Users\zebez\Desktop\GIT\TJM_Intranet\obj\Debug\Intranet.csproj.CopyComplete
+C:\Users\zebez\Desktop\GIT\TJM_Intranet\obj\Debug\Depannage.dll
+C:\Users\zebez\Desktop\GIT\TJM_Intranet\obj\Debug\Depannage.pdb

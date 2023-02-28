@@ -20,7 +20,7 @@ namespace Intranet
             this.bdd = bdd;
             this.user = user;
             this.mdp = mdp;
-            string url = "SslMode=None;  SERVER=" + this.serveur + "; Database=" + this.bdd + "; User ID=" + this.user + "; Password=" + this.mdp;
+            string url = "SslMode=None; Port=3306; SERVER=" + this.serveur + "; Database=" + this.bdd + "; User ID=" + this.user + "; Password=" + this.mdp;
 
             try
             {

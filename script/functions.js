@@ -1,4 +1,4 @@
-document.getElementById("btn-valider").style.display = "none";
+
 
 function removeDisabled() {
 
@@ -41,3 +41,44 @@ function insertionOK() {
         title: 'Signed in successfully'
     })
 }
+
+
+$(document).ready(function() {
+
+    var btnPlanning = document.querySelector('#btn-absence');
+    var gestionplanning = document.querySelector('.hide-absence');
+    var lesplannings = document.querySelector('.hide-lesabsences');
+
+    $(btnPlanning).click(function() { 
+
+        gestionplanning.classList.toggle('active');
+        lesplannings.classList.toggle('active');
+
+    });
+
+
+    var buttonrh = document.querySelector('#btn-rh');
+    var gestion = document.querySelector('.hide-gestion');
+    var lesgestions = document.querySelector('.hide-lesgestions');
+
+    $(buttonrh).click(function() {
+
+        gestion.classList.toggle('active');
+        lesgestions.classList.toggle('active');
+
+    });
+
+    var buttontacheabs = document.querySelector('#btn-activite');
+    var gestiontacheabs = document.querySelector('.hide-tache');
+    var lesgestionstachesabs = document.querySelector('.hide-lestachesabsences');
+
+    $(buttontacheabs).click(function() {
+
+        gestiontacheabs.classList.toggle('active');
+        lesgestionstachesabs.classList.toggle('active');
+
+    });
+
+    
+
+});

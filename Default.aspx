@@ -58,7 +58,7 @@
                     <ul class="bandeau">
                         <li><a class="effect" href="Default.aspx?page=1">Accueil</a></li>
                         <li><a class="effect" href="Default.aspx?page=2&action=edit&idemploye=<%=Session["id_user"]%>">Mon profil</a></li>
-                        <li><a class="effect" href="Default.aspx?page=3">Mon plannings</a></li>
+                        <li><a class="effect" href="Default.aspx?page=3">Mon planning</a></li>
                         <%
                             if (Session["role"] != null && Session["role"].Equals("manager"))
                             {
@@ -101,13 +101,14 @@
                </div>
          </div> 
 
-
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
     <script type="text/javascript" src="script/functions.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 
     <script>
 
