@@ -1,4 +1,4 @@
-<h3 class="titre-accueil">Bienvenu <span class="color-name"><%=Session["prenom"]%></span>, sur ton espace intranet.</h3>
+<h3 class="titre-accueil">Bienvenue <span class="color-name"><%=Session["prenom"]%></span>, sur ton espace intranet.</h3>
 <div class="div-accueil">
     <p class="p-accueil">Ici, tu trouveras tout ce dont tu as besoin pour mener à bien ton activité au sein de notre entreprise.</p>
     <p class="p-accueil">Tu peux par exemple en tant que collaborateur <%=Session["role"]%>, mettre à jour tes informations, consulter ton planning <br/> ou encore retrouver tes fiches de paies.</p>

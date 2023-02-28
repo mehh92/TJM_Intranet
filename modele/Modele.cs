@@ -539,12 +539,10 @@ namespace Intranet
 
         public List<Absence> SelectWhereAbsenceMois(int id_user, string date_absence)
         {
-            Debug.WriteLine("titi");
             string requete = "select * from absence where id_user = @id_user and month(date_absence) = @date_absence;";
             List<Absence> lesAbsences = new List<Absence>();
             try
             {
-                Debug.WriteLine("tutu");
                 this.maConnexion.Open();
 
                 MySqlCommand uneCmde = this.maConnexion.CreateCommand();
@@ -557,7 +555,6 @@ namespace Intranet
                 DbDataReader unReader = uneCmde.ExecuteReader(); //fetchALL
                 try
                 {
-                    Debug.WriteLine("ttoutou");
                     if (unReader.HasRows)
                     {
                         while (unReader.Read())
@@ -575,7 +572,6 @@ namespace Intranet
                 }
                 catch (Exception exp)
                 {
-                    Debug.WriteLine("toto");
                     Debug.WriteLine("Erreur de requete : " + requete);
                     Debug.WriteLine(exp.Message);
                 }
@@ -584,7 +580,6 @@ namespace Intranet
             }
             catch (Exception exp)
             {
-                Debug.WriteLine("tata");
                 Console.WriteLine("Erreur de requete : " + requete);
                 Console.WriteLine(exp.Message);
 

@@ -5,7 +5,7 @@
 <div class="container-paie">
     <h2 class="titre-paie">Mon planning</h2>
     <div class="btn-planning">
-        <input class="input-bouton" id="btn-absence" type="button" name="btnabsences" value="Enregistrer une absences">
+        <input class="input-bouton" id="btn-absence" type="button" name="btnabsences" value="Enregistrer une absence">
     </div>
 </div>
 
