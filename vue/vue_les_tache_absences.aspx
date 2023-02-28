@@ -1,6 +1,6 @@
 <div class="flex-container">
     <div class="item-tache">
-        <h4 class="titre-insert-offre">Mes taches du jour</h4>
+        <h4 class="titre-insert-offre">Mes tâches du jour</h4>
         <form method="post" class="search border border-paie">
 	        <div class="form-group rechercher-flex">
 		        <input type="text" class="form-control input-paie" id="rechercherTache" name="elemTache" placeholder="Rechercher par date">

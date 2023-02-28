@@ -58,7 +58,7 @@
                     <ul class="bandeau">
                         <li><a class="effect" href="Default.aspx?page=1">Accueil</a></li>
                         <li><a class="effect" href="Default.aspx?page=2&action=edit&idemploye=<%=Session["id_user"]%>">Mon profil</a></li>
-                        <li><a class="effect" href="Default.aspx?page=3">Mon plannings</a></li>
+                        <li><a class="effect" href="Default.aspx?page=3">Mon planning</a></li>
                         <%
                             if (Session["role"] != null && Session["role"].Equals("manager"))
                             {
