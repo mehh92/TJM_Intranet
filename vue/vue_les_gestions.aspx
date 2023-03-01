@@ -1,6 +1,5 @@
 
 <div class="flex-gestion">
-    <div class="hide-lesgestions">
         <div class="item-lesemployes">
             <h4 class="titre-insert-offre">Les employés</h4>
             <form method="post" class="search border border-paie">
@@ -98,11 +97,9 @@
                 </table>
             </div>    
         </div>
-    </div>
 </div>
 
 <div class="flex-gestion">
-    <div class="hide-lestachesabsences">
         <div class="item-lestaches">
             <h4 class="titre-insert-offre">Les taches des employés</h4>
             <form method="post" class="search border border-paie">
@@ -197,5 +194,4 @@
                 </table>
             </div>    
         </div>
-    </div>
 </div>

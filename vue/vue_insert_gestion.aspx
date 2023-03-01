@@ -1,6 +1,5 @@
 <div class="flex-insert">
 
-    <div class ="hide-gestion">
         <div class="div-hide-employe">
 
         <h4 class="titre-insert-offre"> <%=(leEmploye != null) ? "Modifier l'employé" : "Enregistrer un employé"%></h4>
@@ -99,11 +98,8 @@
           </form>
   
         </div>
-    </div>
 
 
-
-<div class="hide-tache">
     <div class="div-hide-tache">
 
     <h4 class="titre-insert-offre"> <%=(laTache != null) ? "Modifier la tache" : "Enregistrer une tache"%></h4>
@@ -145,6 +141,5 @@
       </form>
   
     </div>
-</div>
 </div>
 

@@ -266,7 +266,7 @@ font-size: 22px;
     text-align: left;
     padding-left: 42px;
     padding-top: 30px;
-    height: 1000px;
+    height: 1700px;
     margin-bottom: inherit;
     box-shadow: #bebebe 6px 3px 6px;
 }
@@ -503,6 +503,11 @@ font-size: 22px;
     width: 50%;
     margin-left: 5%;
     margin-bottom: 80px;
+    display: none;
+}
+
+.div-hide-absence.active {
+    display: block;
 }
 
 .flex-container {
@@ -553,6 +558,11 @@ font-size: 22px;
     width: 50%;
     margin-left: 60px;
     margin-bottom: 50px;
+    display: none;
+}
+
+.div-hide-tache.active {
+    display: block;
 }
 
 
@@ -598,7 +608,13 @@ font-size: 22px;
     width: 45%;
     margin-left: 20px;
     margin-bottom: 50px;
+    display: none;
 }
+.div-hide-employe.active,
+.div-hide-paie.active {
+    display: block;
+}
+
 
 .titre-gestion {
     margin-left: 55px;
@@ -611,58 +627,3 @@ font-size: 22px;
     height: 300px;
 }
 
-.hide-lesgestions.active .item-lesemployes, .item-lespaies, .item-lestaches, .item-lesabsences {
-    width: 100%;
-}
-/* GESTION RH */
-.hide-gestion {
-    display: none;
-}
-
-.hide-gestion.active {
-    display: block;
-}
-
-.hide-lesgestions {
-    display: none;
-}
-
-.hide-lesgestions.active {
-    display: block;
-}
-
-
-/* GESTION ACTIVITE */
-.hide-tache {
-    display: none;
-}
-
-.hide-tache.active {
-    display: block;
-}
-
-.hide-lestachesabsences {
-    display: none;
-}
-
-.hide-lestachesabsences.active {
-    display: block;
-}
-
-/* GESTION PLANNING */
-
-.hide-absence {
-    display: none;
-}
-
-.hide-absence.active {
-    display: block;
-}
-
-.hide-lesabsences {
-    display: none;
-}
-
-.hide-lesabsences.active {
-    display: block;
-}

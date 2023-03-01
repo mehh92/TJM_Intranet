@@ -46,36 +46,33 @@ function insertionOK() {
 $(document).ready(function() {
 
     var btnPlanning = document.querySelector('#btn-absence');
-    var gestionplanning = document.querySelector('.hide-absence');
-    var lesplannings = document.querySelector('.hide-lesabsences');
+    var gestionplanning = document.querySelector('.div-hide-absence');
 
     $(btnPlanning).click(function() { 
 
         gestionplanning.classList.toggle('active');
-        lesplannings.classList.toggle('active');
 
     });
 
 
     var buttonrh = document.querySelector('#btn-rh');
-    var gestion = document.querySelector('.hide-gestion');
-    var lesgestions = document.querySelector('.hide-lesgestions');
+    var gestionEmploye = document.querySelector('.div-hide-employe');
+    var gestionPaie = document.querySelector('.div-hide-paie');
+
 
     $(buttonrh).click(function() {
 
-        gestion.classList.toggle('active');
-        lesgestions.classList.toggle('active');
+        gestionEmploye.classList.toggle('active');
+        gestionPaie.classList.toggle('active');
 
     });
 
     var buttontacheabs = document.querySelector('#btn-activite');
-    var gestiontacheabs = document.querySelector('.hide-tache');
-    var lesgestionstachesabs = document.querySelector('.hide-lestachesabsences');
+    var gestiontaches = document.querySelector('.div-hide-tache');
 
     $(buttontacheabs).click(function() {
 
-        gestiontacheabs.classList.toggle('active');
-        lesgestionstachesabs.classList.toggle('active');
+        gestiontaches.classList.toggle('active');
 
     });
 

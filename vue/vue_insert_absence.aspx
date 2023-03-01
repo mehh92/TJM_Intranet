@@ -1,4 +1,3 @@
-<div class="hide-absence">
 	<div class="div-hide-absence">
 
 	<h4 class="titre-insert-offre"> <%=(lAbsence!= null) ? "Modifier l'absence" : "Enregistrer une absence"%></h4>
@@ -27,4 +26,3 @@
 	  </form>
   
 	</div>
-</div>
